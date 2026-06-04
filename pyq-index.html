@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>JELET Prep Hub | Syllabus & PYQs</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                tags: 'ams'
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                processHtmlClass: 'math-tex'
+            },
+            startup: {
+                pageReady: () => MathJax.startup.defaultPageReady()
+            }
+        };
+    </script>
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+
+    <style>
+        /* ── Reset & Base ── */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue-dark:   #1e40af;
+            --blue-mid:    #2563eb;
+            --blue-light:  #3b82f6;
+            --blue-pale:   #eff6ff;
+            --blue-border: #bfdbfe;
+            --slate-900:   #0f172a;
+            --slate-800:   #1e293b;
+            --slate-600:   #475569;
+            --slate-400:   #94a3b8;
+            --slate-200:   #e2e8f0;
+            --slate-100:   #f1f5f9;
+            --slate-50:    #f8fafc;
+            --white:       #ffffff;
+            --green:       #16a34a;
+            --amber:       #d97706;
+            --red:         #dc2626;
+            --radius-lg:   1rem;
+            --radius-md:   0.75rem;
+            --radius-sm:   0.5rem;
+            --shadow-sm:   0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md:   0 4px 16px rgba(0,0,0,0.10);
+            --shadow-lg:   0 8px 32px rgba(0,0,0,0.12);
+            --transition:  all 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--slate-50);
+            color: var(--slate-900);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ════════════════════════════════════════
+           HOME SCREEN
+        ════════════════════════════════════════ */
+        #homeScreen {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1e40af 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 3rem 1.5rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative blobs */
+        #homeScreen::before,
+        #homeScreen::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        #homeScreen::before {
+            width: 500px; height: 500px;
+            background: #3b82f6;
+            top: -120px; right: -100px;
+        }
+        #homeScreen::after {
+            width: 400px; height: 400px;
+            background: #818cf8;
+            bottom: -80px; left: -80px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(59,130,246,0.2);
+            border: 1px solid rgba(59,130,246,0.4);
+            color: #93c5fd;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 1rem;
+            border-radius: 999px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+            line-height: 1.75;
+        }
+
+        /* Stats row */
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .num {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            display: block;
+        }
+
+        .stat-item .lbl {
+            font-size: 0.78rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Card Grid ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.2rem;
+            width: 100%;
+            max-width: 1100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: var(--radius-lg);
+            padding: 1.6rem 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            text-align: left;
+        }
+
+        .home-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .home-card:hover {
+            background: rgba(255,255,255,0.11);
+            border-color: rgba(96,165,250,0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .home-card:hover::before { opacity: 1; }
+
+        .home-card:active { transform: translateY(-2px); }
+
+        /* Syllabus card — accent */
+        .home-card.featured {
+            background: linear-gradient(135deg, rgba(30,64,175,0.5), rgba(37,99,235,0.3));
+            border-color: rgba(96,165,250,0.35);
+        }
+
+        .card-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            flex-shrink: 0;
+        }
+
+        .home-card.featured .card-icon-wrap {
+            background: rgba(96,165,250,0.2);
+            border-color: rgba(96,165,250,0.3);
+        }
+
+        .card-meta {
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            letter-spacing: 0.03em;
+        }
+
+        .tag-syllabus { background: rgba(96,165,250,0.2); color: #93c5fd; }
+        .tag-pyq      { background: rgba(167,139,250,0.2); color: #c4b5fd; }
+        .tag-recent   { background: rgba(52,211,153,0.2); color: #6ee7b7; }
+
+        .card-arrow {
+            font-size: 1.1rem;
+            color: #475569;
+            transition: var(--transition);
+            align-self: flex-end;
+        }
+
+        .home-card:hover .card-arrow {
+            color: #93c5fd;
+            transform: translateX(4px);
+        }
+
+        /* ── Section divider ── */
+        .section-label {
+            width: 100%;
+            max-width: 1100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.75rem;
+            margin-top: 2rem;
+            padding-left: 0.25rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ════════════════════════════════════════
+           READER SCREEN
+        ════════════════════════════════════════ */
+        #readerScreen {
+            display: none;
+            flex-direction: column;
+            min-height: 100vh;
+            background: var(--white);
+        }
+
+        /* ── Top bar ── */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--slate-200);
+            padding: 0 1.5rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--slate-100);
+            border: 1px solid var(--slate-200);
+            color: var(--slate-800);
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 0.45rem 0.9rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .back-btn:hover {
+            background: var(--blue-pale);
+            border-color: var(--blue-border);
+            color: var(--blue-dark);
+        }
+
+        .topbar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--slate-800);
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--slate-100);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            color: var(--slate-600);
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            background: var(--blue-pale);
+            border-color: var(--blue-border);
+            color: var(--blue-dark);
+        }
+
+        .icon-btn[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -2.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--slate-800);
+            color: white;
+            font-size: 0.72rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 200;
+        }
+
+        /* Progress bar */
+        .progress-bar-wrap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--slate-200);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-mid), #818cf8);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ── Reader body ── */
+        .reader-body {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* ── Paper nav rail ── */
+        .paper-rail {
+            width: 220px;
+            flex-shrink: 0;
+            background: var(--slate-50);
+            border-right: 1px solid var(--slate-200);
+            padding: 1.2rem 0.8rem;
+            overflow-y: auto;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+        }
+
+        .rail-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--slate-400);
+            padding: 0 0.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .rail-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: transparent;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--slate-600);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .rail-btn:hover {
+            background: var(--blue-pale);
+            color: var(--blue-dark);
+        }
+
+        .rail-btn.active {
+            background: var(--blue-dark);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .rail-btn .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.5;
+            flex-shrink: 0;
+        }
+
+        .rail-btn.active .dot { opacity: 1; }
+
+        /* ── Content ── */
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2.5rem 3rem;
+            min-width: 0;
+        }
+
+        /* ── Markdown Body ── */
+        .markdown-body {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .markdown-body h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            border-bottom: 3px solid var(--blue-light);
+            padding-bottom: 0.5rem;
+            margin: 0 0 1.5rem;
+            color: var(--slate-900);
+            letter-spacing: -0.02em;
+        }
+
+        .markdown-body h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--slate-200);
+            padding-bottom: 0.35rem;
+            margin: 2.2rem 0 0.9rem;
+            color: var(--slate-800);
+        }
+
+        .markdown-body h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 1.8rem 0 0.6rem;
+            color: var(--blue-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .markdown-body h3::before {
+            content: '';
+            width: 4px;
+            height: 1em;
+            background: var(--blue-light);
+            border-radius: 2px;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .markdown-body p { margin-bottom: 1rem; }
+
+        .markdown-body ul,
+        .markdown-body ol {
+            padding-left: 1.6rem;
+            margin: 0.6rem 0 1rem;
+        }
+
+        .markdown-body li { margin: 0.35rem 0; }
+
+        .markdown-body strong {
+            color: var(--slate-900);
+            font-weight: 700;
+        }
+
+        .markdown-body hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--slate-200), transparent);
+            margin: 2.5rem 0;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid var(--blue-light);
+            background: var(--blue-pale);
+            padding: 0.8rem 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            color: var(--slate-600);
+        }
+
+        .markdown-body table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.2rem 0;
+            display: block;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .markdown-body th,
+        .markdown-body td {
+            border: 1px solid var(--slate-200);
+            padding: 10px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .markdown-body th {
+            background: var(--slate-100);
+            font-weight: 600;
+            color: var(--slate-800);
+        }
+
+        .markdown-body tr:nth-child(even) td {
+            background: var(--slate-50);
+        }
+
+        .markdown-body code {
+            background: var(--slate-100);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.84rem;
+        }
+
+        .markdown-body pre {
+            background: var(--slate-900);
+            color: #e2e8f0;
+            padding: 1.2rem 1.4rem;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 1.2rem 0;
+        }
+
+        .markdown-body pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            font-size: 0.88rem;
+        }
+
+        .markdown-body .MathJax {
+            font-size: 1.05em !important;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* ── Loading / Error ── */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            padding: 6rem 2rem;
+            color: var(--slate-400);
+        }
+
+        .spinner {
+            width: 42px;
+            height: 42px;
+            border: 4px solid var(--slate-200);
+            border-top-color: var(--blue-light);
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .error-box {
+            background: #fee2e2;
+            border-left: 5px solid var(--red);
+            padding: 1.5rem 1.8rem;
+            border-radius: var(--radius-md);
+            color: #991b1b;
+            line-height: 1.9;
+        }
+
+        /* ── Font size controls ── */
+        body.fs-sm .markdown-body { font-size: 0.9rem; }
+        body.fs-lg .markdown-body { font-size: 1.12rem; }
+        body.fs-xl .markdown-body { font-size: 1.22rem; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .paper-rail { display: none; }
+            .content-scroll { padding: 1.8rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .content-scroll { padding: 1.2rem 1rem; }
+            .topbar { padding: 0 1rem; }
+            .topbar-title { font-size: 0.9rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { gap: 1.2rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Scroll to top button ── */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--blue-dark);
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 500;
+        }
+
+        #scrollTopBtn:hover {
+            background: var(--blue-mid);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        #scrollTopBtn.visible { display: flex; }
+
+        /* ── Toast notification ── */
+        .toast {
+            position: fixed;
+            bottom: 5rem;
+            right: 2rem;
+            background: var(--slate-800);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: var(--radius-md);
+            font-size: 0.88rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            z-index: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HOME SCREEN
+════════════════════════════════════════ -->
+<div id="homeScreen">
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-badge">📍 West Bengal &nbsp;·&nbsp; Lateral Entry Test</div>
+        <h1>Crack <span>JELET</span><br>with Confidence</h1>
+        <p>Complete syllabus breakdown and previous year question papers — all in one place, with full math rendering.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="num">7</span>
+                <span class="lbl">Year Papers</span>
+            </div>
+            <div class="stat-item">
+                <span class="num">100+</span>
+                <span class="lbl">Questions / Paper</span>
+            </div>
+            <div class="stat-item">
+                <span class="num">4</span>
+                <span class="lbl">Subjects Covered</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Syllabus card -->
+    <div class="section-label">📋 &nbsp;Study Material</div>
+    <div class="card-grid" id="syllabusCardGrid"></div>
+
+    <!-- PYQ cards -->
+    <div class="section-label">📝 &nbsp;Previous Year Question Papers</div>
+    <div class="card-grid" id="pyqCardGrid"></div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     READER SCREEN
+════════════════════════════════════════ -->
+<div id="readerScreen">
+
+    <!-- Top bar -->
+    <header class="topbar">
+        <button class="back-btn" id="backBtn">&#8592; Home</button>
+        <span class="topbar-title" id="topbarTitle">Loading…</span>
+        <div class="topbar-actions">
+            <button class="icon-btn" id="fsSmBtn"  title="Small text">A<sup>-</sup></button>
+            <button class="icon-btn" id="fsNormBtn" title="Normal text">A</button>
+            <button class="icon-btn" id="fsLgBtn"  title="Large text">A<sup>+</sup></button>
+            <button class="icon-btn" id="copyLinkBtn" title="Copy link">🔗</button>
+        </div>
+        <div class="progress-bar-wrap">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </header>
+
+    <!-- Body: rail + content -->
+    <div class="reader-body">
+
+        <!-- Paper nav rail -->
+        <nav class="paper-rail" id="paperRail">
+            <div class="rail-label">All Papers</div>
+            <!-- populated by JS -->
+        </nav>
+
+        <!-- Scrollable content -->
+        <div class="content-scroll" id="contentScroll">
+            <article id="markdownContainer" class="markdown-body">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading content…</p>
+                </div>
+            </article>
+        </div>
+
+    </div>
+</div>
+
+<!-- Scroll to top -->
+<button id="scrollTopBtn" title="Back to top">↑</button>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+
+<script>
+// ════════════════════════════════════════
+//  DATA
+// ════════════════════════════════════════
+const papers = [
+    {
+        label: "Syllabus",
+        id:    "syllabus",
+        path:  "./syllabus.md",
+        type:  "syllabus",
+        desc:  "Full topic-wise syllabus: Maths, Physics, Chemistry & EEE",
+        icon:  "📖",
+        tag:   "syllabus"
+    },
+    {
+        label: "2017 PYQ",
+        id:    "2017",
+        path:  "./pyq-md/2017.md",
+        type:  "pyq",
+        desc:  "100 questions — Cat I & Cat II with full solutions",
+        icon:  "📄",
+        tag:   "pyq"
+    },
+    {
+        label: "2018 PYQ",
+        id:    "2018",
+        path:  "./pyq-md/2018.md",
+        type:  "pyq",
+        desc:  "100 questions — Cat I & Cat II with full solutions",
+        icon:  "📄",
+        tag:   "pyq"
+    },
+    {
+        label: "2019 PYQ",
+        id:    "2019",
+        path:  "./pyq-md/2019.md",
+        type:  "pyq",
+        desc:  "100 questions — Cat I & Cat II with full solutions",
+        icon:  "📄",
+        tag:   "pyq"
+    },
+    {
+        label: "2021 PYQ",
+        id:    "2021",
+        path:  "./pyq-md/2021.md",
+        type:  "pyq",
+        desc:  "100 questions — Cat I & Cat II with full solutions",
+        icon:  "📄",
+        tag:   "pyq"
+    },
+    {
+        label: "2022 PYQ",
+        id:    "2022",
+        path:  "./pyq-md/2022.md",
+        type:  "pyq",
+        desc:  "100 questions — Cat I & Cat II with full solutions",
+        icon:  "📄",
+        tag:   "pyq"
+    },
+    {
+        label: "2024 PYQ",
+        id:    "2024",
+        path:  "./pyq-md/2024.md",
+        type:  "pyq",
+        desc:  "100 questions — Cat I & Cat II with full solutions",
+        icon:  "📄",
+        tag:   "pyq"
+    },
+    {
+        label: "2025 PYQ",
+        id:    "2025",
+        path:  "./pyq-md/2025.md",
+        type:  "pyq",
+        desc:  "100 questions — Latest paper, Cat I & Cat II",
+        icon:  "🆕",
+        tag:   "recent"
+    }
+];
+
+// ════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════
+let currentId   = null;
+let currentFontSize = 'normal'; // sm | normal | lg | xl
+
+// ════════════════════════════════════════
+//  MATH PROTECTION PIPELINE
+// ════════════════════════════════════════
+function extractMath(src) {
+    const store = {};
+    let idx = 0;
+
+    function token(math) {
+        const key = `MATHPLACEHOLDER_${idx++}_END`;
+        store[key] = math;
+        return key;
+    }
+
+    const patterns = [
+        { re: /\$\$([\s\S]+?)\$\$/g,                                          wrap: (f) => f },
+        { re: /\\\[([\s\S]+?)\\\]/g,                                           wrap: (f) => f },
+        { re: /\\\(([\s\S]+?)\\\)/g,                                           wrap: (f) => f },
+        { re: /(?<!\$)\$(?!\$)((?:[^$\n])+?)(?<!\$)\$(?!\$)/g,                wrap: (f) => f }
+    ];
+
+    let result = src;
+    for (const { re, wrap } of patterns) {
+        result = result.replace(re, (full) => token(wrap(full)));
+    }
+    return { protected: result, store };
+}
+
+function restoreMath(html, store) {
+    let result = html;
+    for (const [key, math] of Object.entries(store)) {
+        const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        result = result.replace(
+            new RegExp(safeKey, 'g'),
+            `<span class="math-tex">${escHtml(math)}</span>`
+        );
+    }
+    return result;
+}
+
+function escHtml(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+// ════════════════════════════════════════
+//  MARKED CONFIG
+// ════════════════════════════════════════
+function configureMarked() {
+    marked.use({ gfm: true, breaks: true, pedantic: false });
+}
+
+// ════════════════════════════════════════
+//  RENDER PIPELINE
+// ════════════════════════════════════════
+async function renderMarkdown(rawText) {
+    const container = document.getElementById('markdownContainer');
+    const { protected: safeText, store } = extractMath(rawText);
+    const rawHtml  = marked.parse(safeText);
+    const finalHtml = restoreMath(rawHtml, store);
+    container.innerHTML = finalHtml;
+
+    if (window.MathJax && MathJax.typesetPromise) {
+        try {
+            if (MathJax.typesetClear) MathJax.typesetClear([container]);
+            await MathJax.typesetPromise([container]);
+        } catch (err) {
+            console.warn('MathJax error:', err);
+        }
+    }
+}
+
+// ════════════════════════════════════════
+//  FETCH & LOAD
+// ════════════════════════════════════════
+async function loadPaper(paperId) {
+    const paper = papers.find(p => p.id === paperId);
+    if (!paper) return;
+
+    const container = document.getElementById('markdownContainer');
+    container.innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading ${paper.label}…</p>
+        </div>`;
+
+    // Update topbar title
+    document.getElementById('topbarTitle').textContent = paper.label;
+
+    // Update rail active state
+    document.querySelectorAll('.rail-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.id === paperId);
+    });
+
+    currentId = paperId;
+    window.location.hash = paperId;
+
+    // Scroll content to top
+    document.getElementById('contentScroll').scrollTop = 0;
+
+    try {
+        const res = await fetch(paper.path, { cache: 'no-cache' });
+        if (!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
+        const text = await res.text();
+        await renderMarkdown(text);
+    } catch (err) {
+        console.error(err);
+        container.innerHTML = `
+            <div class="error-box">
+                <strong>❌ Could not load "${paper.label}"</strong><br><br>
+                <strong>Error:</strong> ${err.message}<br>
+                <strong>Path:</strong> <code>${paper.path}</code><br><br>
+                Serve files via a local web server:<br>
+                <code>python -m http.server 5500</code>
+            </div>`;
+    }
+}
+
+// ════════════════════════════════════════
+//  SCREEN SWITCHING
+// ════════════════════════════════════════
+function showHome() {
+    document.getElementById('homeScreen').style.display   = 'flex';
+    document.getElementById('readerScreen').style.display = 'none';
+    document.getElementById('scrollTopBtn').classList.remove('visible');
+    window.location.hash = '';
+    currentId = null;
+}
+
+function showReader(paperId) {
+    document.getElementById('homeScreen').style.display   = 'none';
+    document.getElementById('readerScreen').style.display = 'flex';
+    loadPaper(paperId);
+}
+
+// ════════════════════════════════════════
+//  BUILD HOME CARDS
+// ════════════════════════════════════════
+function buildHomeCards() {
+    const syllabusGrid = document.getElementById('syllabusCardGrid');
+    const pyqGrid      = document.getElementById('pyqCardGrid');
+
+    papers.forEach(paper => {
+        const card = document.createElement('div');
+        card.className = 'home-card' + (paper.type === 'syllabus' ? ' featured' : '');
+        card.innerHTML = `
+            <div style="display:flex;align-items:flex-start;gap:0.9rem;">
+                <div class="card-icon-wrap">${paper.icon}</div>
+                <div class="card-meta">
+                    <div class="card-title">${paper.label}</div>
+                    <div class="card-desc">${paper.desc}</div>
+                </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.2rem;">
+                <span class="card-tag tag-${paper.tag}">
+                    ${paper.tag === 'recent' ? '🆕 Latest' : paper.tag === 'syllabus' ? '📋 Syllabus' : '📝 PYQ'}
+                </span>
+                <span class="card-arrow">→</span>
+            </div>`;
+        card.addEventListener('click', () => showReader(paper.id));
+
+        if (paper.type === 'syllabus') syllabusGrid.appendChild(card);
+        else                           pyqGrid.appendChild(card);
+    });
+}
+
+// ════════════════════════════════════════
+//  BUILD PAPER RAIL
+// ════════════════════════════════════════
+function buildPaperRail() {
+    const rail = document.getElementById('paperRail');
+    // keep the label div, append buttons after
+    papers.forEach(paper => {
+        const btn = document.createElement('button');
+        btn.className  = 'rail-btn';
+        btn.dataset.id = paper.id;
+        btn.innerHTML  = `<span class="dot"></span>${paper.label}`;
+        btn.addEventListener('click', () => {
+            if (paper.id !== currentId) loadPaper(paper.id);
+        });
+        rail.appendChild(btn);
+    });
+}
+
+// ════════════════════════════════════════
+//  FONT SIZE CONTROLS
+// ════════════════════════════════════════
+function setFontSize(size) {
+    document.body.classList.remove('fs-sm', 'fs-lg', 'fs-xl');
+    if (size === 'sm') document.body.classList.add('fs-sm');
+    if (size === 'lg') document.body.classList.add('fs-lg');
+    if (size === 'xl') document.body.classList.add('fs-xl');
+    currentFontSize = size;
+}
+
+// ════════════════════════════════════════
+//  PROGRESS BAR
+// ════════════════════════════════════════
+function initProgressBar() {
+    const scroll = document.getElementById('contentScroll');
+    const bar    = document.getElementById('progressBar');
+    const topBtn = document.getElementById('scrollTopBtn');
+
+    scroll.addEventListener('scroll', () => {
+        const { scrollTop, scrollHeight, clientHeight } = scroll;
+        const pct = scrollHeight > clientHeight
+            ? (scrollTop / (scrollHeight - clientHeight)) * 100
+            : 0;
+        bar.style.width = pct + '%';
+        topBtn.classList.toggle('visible', scrollTop > 400);
+    });
+
+    topBtn.addEventListener('click', () => {
+        scroll.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// ════════════════════════════════════════
+//  TOAST
+// ════════════════════════════════════════
+function showToast(msg, duration = 2500) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), duration);
+}
+
+// ════════════════════════════════════════
+//  COPY LINK
+// ════════════════════════════════════════
+function initCopyLink() {
+    document.getElementById('copyLinkBtn').addEventListener('click', () => {
+        const url = window.location.href;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(url)
+                .then(() => showToast('🔗 Link copied!'))
+                .catch(() => showToast('Could not copy link'));
+        } else {
+            showToast('🔗 ' + url);
+        }
+    });
+}
+
+// ════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+    configureMarked();
+    buildHomeCards();
+    buildPaperRail();
+    initProgressBar();
+    initCopyLink();
+
+    // Font size buttons
+    document.getElementById('fsSmBtn').addEventListener('click',   () => setFontSize('sm'));
+    document.getElementById('fsNormBtn').addEventListener('click',  () => setFontSize('normal'));
+    document.getElementById('fsLgBtn').addEventListener('click',   () => setFontSize('lg'));
+
+    // Back button
+    document.getElementById('backBtn').addEventListener('click', showHome);
+
+    // Hash routing — deep link support
+    const hash = window.location.hash.slice(1);
+    if (hash && papers.find(p => p.id === hash)) {
+        showReader(hash);
+    } else {
+        showHome();
+    }
+
+    // Browser back/forward
+    window.addEventListener('hashchange', () => {
+        const h = window.location.hash.slice(1);
+        if (!h) {
+            showHome();
+        } else {
+            const p = papers.find(x => x.id === h);
+            if (p) showReader(p.id);
+        }
+    });
+});
+</script>
+</body>
+</html>
