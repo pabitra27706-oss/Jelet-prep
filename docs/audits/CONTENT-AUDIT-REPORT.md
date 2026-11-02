@@ -12,6 +12,17 @@ Two spot checks used a secondary mirror's page images and are labelled as such.
 Where something was not checked, this report says so instead of implying
 verification.
 
+> **Update, 2026-11-02 (later the same day).** The owner supplied 11 official
+> WBJEEB booklets, so the "could not be downloaded" limitation above is now
+> **partly retired**. Findings and the two corrected rows are recorded in
+> [`OFFICIAL-PAPER-VERIFICATION.md`](OFFICIAL-PAPER-VERIFICATION.md). In short:
+> the 2024 "missing 60, 61, 62" row was **wrong** — those questions are present
+> in the official booklet; the 2022 "missing 86–90" row is **right**, the
+> questions exist officially but were never transcribed; the 24 "no options"
+> questions are all **figure-based by design**, not defects; and no booklet
+> contains an answer key, so nothing below is key-verified. The rows in §1, §3.2
+> and §4 are corrected inline below and marked with †.
+
 ---
 
 ## 1. What is shipped
@@ -22,11 +33,13 @@ verification.
 | 2018 | `pyq-md/2018.md` | 100               | none            | 20 858 | `a2763176debd` |
 | 2019 | `pyq-md/2019.md` | 98                | 78, 79          | 20 531 | `c55185c80372` |
 | 2021 | `pyq-md/2021.md` | 100               | none            | 22 750 | `906d978c51df` |
-| 2022 | `pyq-md/2022.md` | 95                | 86–90           | 24 714 | `d796aec9d04f` |
-| 2024 | `pyq-md/2024.md` | 97                | 60, 61, 62      | 21 134 | `7e0be760254f` |
+| 2022 | `pyq-md/2022.md` | 95                | 86–90 †         | 24 714 | `d796aec9d04f` |
+| 2024 | `pyq-md/2024.md` | 97                | none †          | 21 134 | `7e0be760254f` |
 | 2025 | `pyq-md/2025.md` | 100               | none            | 23 039 | `998b466949ec` |
 
-690 numbered questions in total. Plus `syllabus.md` (2026 summary) and the
+690 numbered questions in total. † 2024's three "missing" numbers were an
+artefact — see the update note above and
+[`OFFICIAL-PAPER-VERIFICATION.md`](OFFICIAL-PAPER-VERIFICATION.md) §2. Plus `syllabus.md` (2026 summary) and the
 preserved legacy reader `pyq-index.html`. Both original formats are kept.
 
 ---
@@ -87,7 +100,7 @@ Machine-detected per paper (see the generated table for all rows):
 | 2019 | 5                          | 4 (Q77, Q90, Q91, Q94)                       | Q77 carries an **editorial bracket note** that is not original exam text. |
 | 2021 | 12                         | 2 (Q26, Q35)                                 | "Diagram based" answers.                                                  |
 | 2022 | 4                          | 3 (Q49, Q57, Q62)                            | Graph-option questions.                                                   |
-| 2024 | 18                         | 5 (Q42, Q66, Q78, Q79, Q89)                  | Includes chemical-structure options.                                      |
+| 2024 | 18                         | 5 (Q42, Q66, Q78, Q79, Q89)                  | Includes chemical-structure options. †                                    |
 | 2025 | 13                         | 6 (Q44, Q51, Q58, Q66, Q85, Q88)             | Includes reaction schemes.                                                |
 
 Every one of these 24 questions is answerable only with the original paper. The
@@ -110,6 +123,21 @@ by subject sees Civil/Mechanical questions under "Computer & IT".
 **Not fixed in this phase**: correcting headings is an editorial change to
 preserved content and needs the official paper to place the boundaries. Recorded
 as issue M-1 and surfaced as a warning in the reader instead.
+
+> **Update, 2026-11-02.** The official papers now place those boundaries, and the
+> cause is understood. The last two sections are printed as
+> **ENVIRONMENTAL ENGINEERING (Q56–70)** and **ENGINEERING MECHANICS (Q71–100)**,
+> but the transcription carried them as inline text rather than headings, so the
+> detector saw one long "COMPUTER" section. The content is right; only the labels
+> are wrong. Separately, the official 2017 label reads "(Q71–85)" while the block
+> runs to Q100 — the truncation is in the official print run, not the
+> transcription. Boundaries and evidence:
+> [`OFFICIAL-PAPER-VERIFICATION.md`](OFFICIAL-PAPER-VERIFICATION.md) §4. The
+> heading correction is still the owner's editorial call; nothing was changed here.
+> That record also shows the papers are multi-stream (each prints extra,
+> renumbered 71–100 blocks for Printing, Agricultural and other diploma streams),
+> which is why the corpus contains no duplicate question numbers.
+
 
 ### 3.4 Low — textual artefacts
 
@@ -137,8 +165,8 @@ as issue M-1 and surfaced as a warning in the reader instead.
 | 2018 | 4                   | 100                           | Readable; labels incomplete (M-1) |
 | 2019 | 4                   | 98 (78–79 absent)             | Readable with labelled gap        |
 | 2021 | 4                   | 100                           | Readable; labels incomplete (M-1) |
-| 2022 | 2                   | 95 (86–90 absent)             | Readable with labelled gap        |
-| 2024 | 6                   | 97 (60–62 absent)             | Readable with labelled gap        |
+| 2022 | 2                   | 95 (86–90 absent †)           | Readable with labelled gap        |
+| 2024 | 6                   | 97 (none absent †)            | Readable; 18 diagram placeholders |
 | 2025 | 11                  | 100                           | Readable; 13 diagram placeholders |
 
 ---

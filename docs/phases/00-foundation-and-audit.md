@@ -117,7 +117,20 @@ Changed paths in this phase: `scripts/content-audit.mjs`, `scripts/content-audit
 
 ## Known gaps carried into Phase 3+
 
-1. H-1 no answer keys; H-2 no PDF comparison; H-3 condensed wording; H-4 2019 title conflict.
+> **Status update, 2026-11-02 (post-closure).** The owner supplied 11 official
+> WBJEEB booklets. See
+> [`../audits/OFFICIAL-PAPER-VERIFICATION.md`](../audits/OFFICIAL-PAPER-VERIFICATION.md).
+> Effect on this list: **H-2 is partly retired** — 2017, 2018, 2021, 2022, 2023,
+> 2024 and 2025 Paper-I identities are confirmed from printed covers and their
+> question numbering checked against the official text; 2019 remains unverified
+> (no booklet supplied) and no paper is transcription-verified at sentence level.
+> **H-1 does not move**: none of the 11 booklets contains an answer key, confirmed
+> by inspecting the final pages of every one. **L-2 is now fixable** — the official
+> 2023 Paper-I is in hand and has a clean text layer. M-1 has a confirmed cause
+> (inline, unheading-ed sections) but the fix is still an editorial decision.
+> No eligibility row changes.
+
+1. H-1 no answer keys (11/11 booklets confirmed key-free); H-2 no PDF comparison (**partly retired — 2026-11-02**; 2019 only, plus sentence-level fidelity); H-3 condensed wording; H-4 2019 title conflict.
 2. M-1 wrong last-section labels in 2017/2018/2019/2021 transcriptions.
 3. M-2 72 diagram/reaction-dependent questions.
 4. L-2 2023 Paper I missing from the library.
