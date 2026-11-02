@@ -200,3 +200,30 @@ dated note rather than rewritten silently:
 4. **The four Paper-II Pharmacy booklets** — identified and checked for keys, but
    their content was not compared with anything, because no Pharmacy paper exists
    in the corpus.
+
+---
+
+## 9. Marking rules — verified from the instruction pages
+
+The rules that a scoring engine must implement are printed on page 1 of every
+booklet and were read there directly. They are recorded in
+`docs/phases/03-verified-practice.md` §3-0.1 with per-year citations; the summary
+is that 2017, 2018 and 2021 are 100-mark **single-answer** papers (+1, −¼ for a
+wrong answer or for marking more than one, 0 for blank), while 2022, 2024 and 2025
+are 120-mark papers with single-answer Category-I questions and multi-answer
+Category-II questions worth 2 marks with the formula
+
+> score = 2 × (number of correct answers marked) ÷ (actual number of correct answers)
+
+applied only when the selection is a non-empty subset of the correct set; any
+wrong option marked scores zero, with no negative marking.
+
+**2019 remains unverified** — no booklet was supplied.
+
+One caution worth keeping: OCR of the 2022 page rendered that division sign as a
+plus sign. The page render settles it. Scoring rules must never be transcribed
+from OCR without a visual check, which is why every row above cites a page.
+
+This is the one Phase 3 prerequisite that could be closed today without a key. It
+does not unblock scoring — knowing how to mark a question is not knowing what the
+right answer is.

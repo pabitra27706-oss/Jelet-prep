@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" role="img" aria-labelledby="t d" width="400" height="220">
+  <!--
+    RECONSTRUCTED FIGURE — not official WBJEEB artwork.
+    Source: JELET-2017, Paper-I (Diploma Engg. & Tech.), booklet 80116361, page 17, Q81.
+    Redrawn from the official booklet on 2026-11-02 as original vector line art.
+    No pixel data from the official PDF is stored in this file.
+    Values read from the source: 80 N plateau from t = 0 to t = 5 s, then a straight
+    fall to 0 N at t = 10 s. Axis units are N and s.
+    See docs/decisions/ADR-0002-figure-reconstruction.md.
+  -->
+  <title id="t">Force–time graph: 80 newtons held constant from 0 to 5 seconds, then falling linearly to zero at 10 seconds</title>
+  <desc id="d">A graph with force in newtons on the vertical axis and time in seconds on the horizontal axis.
+    The force is a flat 80 newtons from 0 to 5 seconds, then decreases along a straight line to
+    zero at 10 seconds. A dashed vertical line marks the 5 second point.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328" />
+    </marker>
+  </defs>
+
+  <g fill="none" stroke="#1f2328" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- axes -->
+    <line x1="60" y1="180" x2="325" y2="180" marker-end="url(#arrow)" />
+    <line x1="60" y1="180" x2="60" y2="45" marker-end="url(#arrow)" />
+    <!-- force profile -->
+    <path d="M 60 90 L 160 90 L 280 180" stroke-width="2.4" />
+    <!-- dashed guide at t = 5 s -->
+    <line x1="160" y1="90" x2="160" y2="180" stroke-dasharray="6 5" stroke-width="1.4" />
+  </g>
+
+  <g fill="#1f2328" font-family="system-ui, sans-serif" font-size="12">
+    <text x="60" y="34">Force (N)</text>
+    <text x="332" y="184">Time (s)</text>
+    <text x="52" y="95" text-anchor="end">80</text>
+    <text x="60" y="198" text-anchor="middle">0</text>
+    <text x="160" y="198" text-anchor="middle">5</text>
+    <text x="280" y="198" text-anchor="middle">10</text>
+  </g>
+</svg>

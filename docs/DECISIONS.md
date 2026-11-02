@@ -107,7 +107,26 @@ Historical planning-stage boundary: only documentation work was authorized in th
   downloads, accounts, cloud sync, analytics, ads, payments, PR/merge/deploy,
   manual screen-reader audit, cross-browser matrix, full source verification.
 
-<<<<<<< HEAD
+## Phase 2 merge and deployment authorization — 2026-11-02
+
+- O-11: Owner instructed “Ok merge it and run the workflow to update the
+  website.” This authorizes the Phase 2 commit, branch push, pull request,
+  merge into `main` and the resulting GitHub Pages deployment of Phase 2.
+- Remote CI before merge: PR #4 run 41398800142 — “Check and build” passed in
+  20s (formatting, 56 unit tests, TypeScript + production build); the Pages job
+  correctly reported `skipping` for a pull request.
+- Merge: PR #4 squashed? No — merged with `--merge` at 2026-11-02T06:16:29Z,
+  merge commit `e7b99b3`.
+- Deployment: `main` push run 41398880485 (“Check and build” 24s, “Publish to
+  GitHub Pages” 21s) succeeded. GitHub deployment 7485622720 has state
+  `success` for ref `main` at `e7b99b3` with environment URL
+  https://pabitra27706-oss.github.io/Jelet-prep/ . Pages remains configured with
+  `build_type: workflow` (GitHub Actions), no custom domain.
+- Verification limit: this sandbox can only reach GitHub/npm/PyPI hosts, so the
+  live `pages.github.io` URL could not be fetched from here. Live-state evidence
+  is the deployment status plus the green build/deploy jobs, not a page fetch.
+- This authorizes deployment of the labelled Phase 2 workspace only. Content
+  verification, answer keys, rights review and Phase 3 remain unauthorized work.
 
 ## Phase 0 completion — 2026-11-02
 
@@ -138,27 +157,60 @@ Historical planning-stage boundary: only documentation work was authorized in th
 - Product decisions avoided (not invented): no language/bilingual scope, no
   monetization, no publish/suppress decision about the eligibility summary, no
   decision that transcriptions are licensed.
-  \=======
 
-## Phase 2 merge and deployment authorization — 2026-11-02
+## Official-paper verification — 2026-11-02
 
-- O-11: Owner instructed “Ok merge it and run the workflow to update the
-  website.” This authorizes the Phase 2 commit, branch push, pull request,
-  merge into `main` and the resulting GitHub Pages deployment of Phase 2.
-- Remote CI before merge: PR #4 run 41398800142 — “Check and build” passed in
-  20s (formatting, 56 unit tests, TypeScript + production build); the Pages job
-  correctly reported `skipping` for a pull request.
-- Merge: PR #4 squashed? No — merged with `--merge` at 2026-11-02T06:16:29Z,
-  merge commit `e7b99b3`.
-- Deployment: `main` push run 41398880485 (“Check and build” 24s, “Publish to
-  GitHub Pages” 21s) succeeded. GitHub deployment 7485622720 has state
-  `success` for ref `main` at `e7b99b3` with environment URL
-  https://pabitra27706-oss.github.io/Jelet-prep/ . Pages remains configured with
-  `build_type: workflow` (GitHub Actions), no custom domain.
-- Verification limit: this sandbox can only reach GitHub/npm/PyPI hosts, so the
-  live `pages.github.io` URL could not be fetched from here. Live-state evidence
-  is the deployment status plus the green build/deploy jobs, not a page fetch.
-- This authorizes deployment of the labelled Phase 2 workspace only. Content
-  verification, answer keys, rights review and Phase 3 remain unauthorized work.
+- O-13: Owner supplied 11 official WBJEEB booklets and instructed “Ok check
+  these.” This authorizes verification work and writing the findings up; it does
+  **not** authorize editing `pyq-md/`, importing new papers, or deploying.
+- Result recorded in `docs/audits/OFFICIAL-PAPER-VERIFICATION.md`. Two audit
+  findings were corrected in place with dated markers rather than rewritten:
+  2024 Q60–62 exist in the official booklet (the "missing" row was a tool
+  artefact), and 2022 Q86–90 are genuinely absent from the transcription though
+  present officially.
+- No eligibility row changed. No paper became transcription-verified at sentence
+  level and none became key-verified: all 11 booklets were checked on their final
+  pages and contain no answer key. H-1 therefore stays open, with evidence.
+- 2019 was not among the supplied booklets, so its Q78–79 gap remains untested.
+- The four Paper-II booklets are all Pharmacy and are outside the v1 scope
+  recorded in the roadmap; they were identified and key-checked, nothing more.
 
-> > > > > > > f63c9fa (Docs: record Phase 2 merge and Pages deployment)
+## Figure reconstruction decision — 2026-11-02
+
+- O-14: Owner was asked what to do about the 72 figure-dependent questions and
+  chose **redraw as original SVG line art**, rejecting page-links-only,
+  crop-and-self-host and leaving placeholders.
+- This knowingly accepts the residual risk that a redraw is a derived work whose
+  permissibility is still unresolved in `docs/LICENSING.md`. It is recorded as a
+  decision, not a clearance. Cropping official artwork remains explicitly
+  rejected; the no-official-pixels constraint is absolute.
+- Recorded in `docs/decisions/ADR-0002-figure-reconstruction.md`, with the asset
+  standard in `docs/figures/README.md` and the 72-entry inventory in
+  `docs/figures/manifest.json` (2 pilots done, 70 not started).
+- Nothing in this decision makes a question verified or scoreable.
+
+## Phase 3 groundwork — 2026-11-02
+
+- O-15: Asked “what next?”, the owner chose to spec out Phase 3 without keys
+  rather than fix labels, import 2023 Paper-I, or wait.
+- Added §3-0 to `docs/phases/03-verified-practice.md`: the key-independent work
+  packages (rule model, pure scoring core, content model, eligibility gate, key
+  import contract, attempt-store design), the hard prohibitions while H-1 is open,
+  and the two exit routes from the key blocker.
+- Marking rules are now source-verified per year from the booklets' instruction
+  pages — 2017, 2018, 2021 single-answer 100-mark papers; 2022, 2024, 2025
+  120-mark papers with a Category-II formula that is a division, not a flat
+  half-credit step. 2019 remains unverified (no booklet). An OCR pass misread that
+  division as a "+", which is why the rules are quoted with page citations.
+- `docs/CONTENT-SCHEMA.md` gained the figure record and an all-or-nothing key
+  import contract. No key data exists; no scoring code was written.
+- Phase 3 remains **blocked** for anything that produces a score. O-15 authorizes
+  specification and, separately, only the work packages listed in §3-0.2.
+
+## Documentation defect repaired — 2026-11-02
+
+- `docs/DECISIONS.md` on `main` contained unresolved merge-conflict markers
+  (`<<<<<<< HEAD` / `\=======` / `> > > > > > >`) committed by the PR #6
+  cherry-pick. Both sides were legitimate content; the file now keeps both, in
+  chronological order (O-11 Phase 2 merge, then O-12 Phase 0 completion), with the
+  markers removed. No decision text was altered.
