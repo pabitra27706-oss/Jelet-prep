@@ -1,6 +1,6 @@
 # Phase 2 — Persistent personal study workspace
 
-Status: IMPLEMENTED FOR PREVIEW REVIEW (2026-11-02) — owner review of the workspace screens is pending.
+Status: MERGED AND DEPLOYED (2026-11-02, PR #4, merge commit `e7b99b3`) — owner review of the workspace screens still pending.
 Dependencies: stable paper/question/topic IDs; functioning reader; approved local-only product model.
 
 ## Outcome
@@ -107,3 +107,17 @@ Unit/integration tests cover persistence contracts, migrations and conflict rule
 Phase 0's full source/key audit, rights review, owner design review of the new
 workspace screens, manual assistive-technology pass and cross-browser testing
 remain open. No PR, merge or deployment was performed in this step.
+
+### Merge and deployment record — 2026-11-02
+- Pull request #4 from `arena/5d3e2075-jelet-prep` into `main`; PR run
+  41398800142 passed ("Check and build" 20s, Pages job skipped for PRs).
+- Merged with a merge commit at 2026-11-02T06:16:29Z → `e7b99b3`.
+- `main` push run 41398880485 passed both jobs ("Check and build" 24s,
+  "Publish to GitHub Pages" 21s). Deployment 7485622720: state `success`,
+  environment `github-pages`, URL https://pabitra27706-oss.github.io/Jelet-prep/ .
+- Pages still uses `build_type: workflow`; the workflow file, permissions and
+  hosting configuration were not changed.
+- Live response headers/HTML could not be fetched from the authoring sandbox
+  (network allowlist excludes `pages.github.io`). Confirm the published site in
+  a browser; the deployment API reports success, which is not the same as a
+  verified page fetch.

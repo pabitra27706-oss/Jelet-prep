@@ -1,12 +1,12 @@
 # Website roadmap
 
-Status: Phase 1 merged and deployed; Phase 2 implemented for preview review (2026-11-02). Full phase-0 audit, content/key verification, rights review and owner design approval of the new workspace screens remain open. Product proposals outside these increments remain unconfirmed. Four weeks is a proposed target, not an owner commitment. Every phase has a working web increment, not an APK.
+Status: Phase 1 and Phase 2 merged and deployed (2026-11-02). Full phase-0 audit, content/key verification, rights review and owner design approval of the new workspace screens remain open. Product proposals outside these increments remain unconfirmed. Four weeks is a proposed target, not an owner commitment. Every phase has a working web increment, not an APK.
 
 | Phase | Parts (2–4 each) | Done means | Status |
 | --- | --- | --- | --- |
 | 0 — Foundation and audit | A: source/completeness inventory; B: dependency/licence and architecture checks; C: build/test shell; D: production design foundations | Existing content preserved; gaps tracked; dependencies cleared; runnable shell and initial tests; design direction presented within real website and approved before broad UI rollout | Partial: build/inventory done; audit/design gates open |
 | 1 — Library and reader | A: routes/home/library; B: real syllabus and paper reader with maths; C: source/stream/completeness labels and responsive theme | Students find/read actual content at mobile/desktop widths; refresh/deep links work; missing/loading/error states tested; working preview + production build artifact | Implemented; awaiting owner design review / prerequisite closure |
-| 2 — Study workspace | A: bookmarks/resume/notes; B: syllabus progress/history; C: validated export/import and reset | Data survives reload; import cannot silently destroy progress; storage failure recovery tested; preview demonstrates real persistent data | Implemented; awaiting owner review of workspace screens |
+| 2 — Study workspace | A: bookmarks/resume/notes; B: syllabus progress/history; C: validated export/import and reset | Data survives reload; import cannot silently destroy progress; storage failure recovery tested; preview demonstrates real persistent data | Merged and deployed (PR #4, `e7b99b3`); owner review of workspace screens and content verification remain open |
 | 3 — Verified practice | A: reviewed question/key dataset; B: answer controls/timer/resume; C: scoring/results/revision | All scored questions have matched verified keys; unit tests cover category rules; complete verified papers alone enable full mocks; practice runs end to end in preview | Planned |
 | 4 — Offline and accessibility | A: content download/update management; B: offline and failure recovery; C: keyboard/screen-reader and responsive audit | Downloaded content opens after offline restart; un-downloaded content clearly unavailable; stale rules labelled; cache updates do not destroy progress; accessibility checks pass | Planned |
 | 5 — Release readiness | A: browser regression/performance/security; B: final content/legal/privacy review; C: hosting configuration and handover | Green production build and documented tests; deploy-ready artifact; known gaps disclosed; independent-site notice; actual deployment requires separate owner approval | Planned |
@@ -47,10 +47,15 @@ IDs, bookmarks, reading-position resume, plain-text notes, syllabus topic status
 a derived progress/dashboard view, a versioned JSON backup with validated
 merge/replace import, confirmed reset and defined multi-tab behaviour.
 
+CI before merge: PR #4 "Check and build" passed (formatting, 56 unit tests,
+TypeScript + build); `main` push run 41398880485 built and deployed the artifact
+(deployment state `success`).
+
 Local results recorded for this increment: formatting check, 56 unit tests,
 TypeScript check, production build, 23 production-preview browser tests
 (including persistence, backup/restore, duplicate import, blocked storage and
 simulated quota failure) and axe scans of 12 screen/theme combinations. No claim
 of completed official-paper authentication, verified answer keys, complete
-phase 0, remote CI runs or cross-browser verification is made. Phase 2 was not
-merged or deployed in this step.
+phase 0 or cross-browser verification is made. Phase 2 is merged and published;
+the live page could not be fetched from the authoring sandbox, so publication is
+evidenced by the successful deployment record rather than a page fetch.
