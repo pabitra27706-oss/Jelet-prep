@@ -4,9 +4,11 @@ Status: MERGED AND DEPLOYED (2026-11-02, PR #4, merge commit `e7b99b3`) — owne
 Dependencies: stable paper/question/topic IDs; functioning reader; approved local-only product model.
 
 ## Outcome
+
 The website remembers real study work on the same device and provides a safe backup route without asking students to create an account.
 
 ## 2-A — Durable storage and state boundaries
+
 - Implement versioned IndexedDB stores for bookmarks, positions, notes, topic status and history.
 - Use explicit repository/storage interfaces; UI components must not own schema migrations.
 - Define transactions, retry/error reporting, migration and rollback/backup policy.
@@ -15,6 +17,7 @@ The website remembers real study work on the same device and provides a safe bac
 - Handle private browsing, denied storage, quota and browser-cleared data with honest notices.
 
 ## 2-B — Actual study interactions
+
 - Bookmark/unbookmark stable question IDs from reader and saved list; links return to the correct paper/question.
 - Save reading position with sensible write throttling and restore after reload.
 - Create/edit/delete plain-text personal notes, with input limits and no executable markup.
@@ -22,6 +25,7 @@ The website remembers real study work on the same device and provides a safe bac
 - Show useful empty states and recently opened content. No fake streaks, rankings or rank predictions.
 
 ## 2-C — Export, restore and reset
+
 - Define versioned JSON backup envelope with app/schema/content references; avoid unnecessary identifiers.
 - Validate structure, size, types and IDs before any write. Reject incompatible versions safely.
 - Show counts/conflicts before import; explicitly distinguish merge from replace and define deterministic conflict rules.
@@ -30,6 +34,7 @@ The website remembers real study work on the same device and provides a safe bac
 - Reset requires confirmation and specifies exactly what is cleared; downloaded content and progress must not be confused.
 
 ## Acceptance scenarios
+
 - Bookmark, note and topic progress survive page reload and browser reopen.
 - Navigation restores the intended reading position without jumping to a different question.
 - Export → reset → import restores equivalent user data.
@@ -38,11 +43,13 @@ The website remembers real study work on the same device and provides a safe bac
 - Two open tabs do not silently lose newer edits; simulated quota failure reports unsaved status.
 
 ## Tests and handover
+
 Unit/integration tests cover persistence contracts, migrations and conflict rules. Browser tests cover restart/backup/restore/reset and storage failures. Preview demonstrates genuine stored data. Privacy text explains device-local storage, browser deletion risk and absence of cross-device sync. Attempt history becomes fully functional with phase 3; do not fabricate results now.
 
 ## Execution evidence — 2026-11-02
 
 ### Shipped
+
 - **Stable IDs.** `src/content.ts` now derives `jelet-et-p1-<year>` paper IDs,
   `<paper>:q<number>` question IDs and positional
   `jelet-syllabus:<subject>:t<nn>` topic IDs, plus `CONTENT_VERSION`
@@ -70,6 +77,7 @@ Unit/integration tests cover persistence contracts, migrations and conflict rule
   last-write-wins place markers, documented as such.
 
 ### Actual checks
+
 - `npm run lint`: passed (Prettier formatting only; not semantic lint).
 - `npm test`: **56 tests passed** in 5 files — 18 carried over from Phase 1 plus
   38 new (5 content-identity, 13 backup/merge, 20 persistence/migration/import).
@@ -93,6 +101,7 @@ Unit/integration tests cover persistence contracts, migrations and conflict rule
   typography are unchanged.
 
 ### Deliberate limits
+
 - No scores, keys, timers or attempts; `/progress` states that plainly.
 - No cross-device sync, accounts, cloud backup or offline downloads.
 - IndexedDB is used directly rather than via a wrapper dependency
@@ -104,11 +113,13 @@ Unit/integration tests cover persistence contracts, migrations and conflict rule
   future schema is reported, not repaired.
 
 ### Remaining gates
+
 Phase 0's full source/key audit, rights review, owner design review of the new
 workspace screens, manual assistive-technology pass and cross-browser testing
 remain open. No PR, merge or deployment was performed in this step.
 
 ### Merge and deployment record — 2026-11-02
+
 - Pull request #4 from `arena/5d3e2075-jelet-prep` into `main`; PR run
   41398800142 passed ("Check and build" 20s, Pages job skipped for PRs).
 - Merged with a merge commit at 2026-11-02T06:16:29Z → `e7b99b3`.

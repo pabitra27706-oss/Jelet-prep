@@ -108,6 +108,7 @@ Historical planning-stage boundary: only documentation work was authorized in th
   manual screen-reader audit, cross-browser matrix, full source verification.
 
 <<<<<<< HEAD
+
 ## Phase 0 completion — 2026-11-02
 
 - O-12: Owner instructed “Ok complete phase 0.” This authorizes closing the
@@ -137,8 +138,10 @@ Historical planning-stage boundary: only documentation work was authorized in th
 - Product decisions avoided (not invented): no language/bilingual scope, no
   monetization, no publish/suppress decision about the eligibility summary, no
   decision that transcriptions are licensed.
-=======
+  \=======
+
 ## Phase 2 merge and deployment authorization — 2026-11-02
+
 - O-11: Owner instructed “Ok merge it and run the workflow to update the
   website.” This authorizes the Phase 2 commit, branch push, pull request,
   merge into `main` and the resulting GitHub Pages deployment of Phase 2.
@@ -157,4 +160,5 @@ Historical planning-stage boundary: only documentation work was authorized in th
   is the deployment status plus the green build/deploy jobs, not a page fetch.
 - This authorizes deployment of the labelled Phase 2 workspace only. Content
   verification, answer keys, rights review and Phase 3 remain unauthorized work.
->>>>>>> f63c9fa (Docs: record Phase 2 merge and Pages deployment)
+
+> > > > > > > f63c9fa (Docs: record Phase 2 merge and Pages deployment)
