@@ -84,3 +84,73 @@ They were option-letter errors or graph-reading errors, ours or theirs.
    gone the wrong way on a majority rule.
 4. **A solver self-correcting mid-answer is a signal to re-read the page**, not a
    reason to prefer its final figure.
+
+---
+
+# Third pass — DeepSeek-V3, 2026-11-02
+
+## What was different about this input
+
+The third solver's own STEP 1 records that it was given **a text extraction, not
+page images**. That immediately demotes it: four of the six questions it
+declared "undetermined" (Q5, Q6, Q7, Q10, Q11, Q47) were unanswerable because its
+input had lost the matrices and option lists, not because the paper is broken.
+
+It also **mis-identified the paper's structure**, reporting that "Q1–Q85 appear
+to be Category-I" and answering Q31–Q40 with single letters. The page reads
+`Category-II (Q 31 to 40) — one or more options are correct`. That one structural
+error accounts for six of its disagreements at a stroke.
+
+Result: **75 agree, 25 disagree** — but of the 25, six are input failures, and
+seven are second-options missed for the Category-II reason.
+
+## We were wrong — 2 corrections
+
+| Q   | Was | Is          | Why                                                                                                                                                                                                                                                                                                            |
+| --- | --- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 27  | A   | **B**       | Option (B) is printed x = e^{1−tan(y/x)} — exactly what our own reasoning derived. We wrote the right formula and ticked the wrong letter. Third instance of this same failure in this key.                                                                                                                    |
+| 69  | A,C | **A,B,C,D** | The second lens pass treats I₂ (10 cm left of the lens) as a **virtual** object: 1/v = 1/15 + 1/10 = 1/6 gives the final image 6 cm left of the lens, i.e. **16 cm from the mirror**. Option (B) prints 16 cm — a number reachable only that way, which is the setter's own arithmetic confirming (B) and (D). |
+
+## Two disputes withdrawn — our derivations were wrong, not the paper
+
+| Q   | Was      | Is       | Why                                                                                                                                                                          |
+| --- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 40  | disputed | **A, C** | Correct solution is x = 2y − y², so y(−3) = 3 **or** −1. Q40 is Category-II, so two options is legal. The old note's value 4.97 came from a mis-integration (x = y(1−ln y)). |
+| 59  | disputed | **C**    | 1/F = 1/f_lens + 1/f_liquid = (2−μ)/10 = 1/25 gives μ = 1.6 exactly. The old note used the doubling convention, which cannot produce 25 cm for any option.                   |
+
+**The key now has no disputed questions.** Both disputes were my arithmetic error
+wearing a defect label — worth remembering next time a question "has no correct
+option".
+
+## Upheld — 12 rejections
+
+| Q                   | Ours  | Claimed      | Reason for rejecting                                                                                                          |
+| ------------------- | ----- | ------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| 5, 6, 7, 10, 11, 47 | keyed | undetermined | Its text dump lost the matrices and option lists. All six are legible on pages 3–5 and 12.                                    |
+| 31                  | A,B   | B            | Missed (A): rank is 2 exactly at λ = 0.                                                                                       |
+| 32                  | A,B   | A            | Its own prose says "both (A) and (B) are correct… I'll choose (A)".                                                           |
+| 33                  | A,C   | C            | Both x/y + y/x = 2cos(θ−φ) and xy + 1/xy = 2cos(θ+φ) hold.                                                                    |
+| 34                  | A,C   | A            | (√5+1)/2 ≈ 1.62 is also "less than 2".                                                                                        |
+| 35                  | B,C   | B            | a×(b×c) is coplanar with b, c **and** perpendicular to a.                                                                     |
+| 36                  | A,B,D | D            | y is defined for all x, continuous at 0, and dy/dx = 1/3 for x < 0.                                                           |
+| 37                  | A,D   | A            | Both y = x+5 and y = x−5 are tangents; its own prose says so then picks one.                                                  |
+| 38                  | C,D   | D            | f is continuous at the origin as well as having both partials zero.                                                           |
+| 39                  | A,B   | A            | −√2·arccos u differentiates to the same integrand.                                                                            |
+| 62                  | C     | D            | Panel (D) draws the isotherm as a straight line. Only (C) has a horizontal isobar, a vertical isochore and a curved isotherm. |
+| 64                  | C     | D            | v ∝ R√ρ: R_W = 9^(1/3)R_P ≈ 2.08 R_P beats R_Q = 2R_P, so V_W > V_Q > V_P.                                                    |
+
+Q18 was flagged again (it says (A), we key (C)) and Q100 (it says (A), we key
+(B)). Both were re-read on the page and both stand; see the notes in the JSON.
+
+## What three passes have shown
+
+1. **Agreement between solvers is not evidence.** The only two corrections this
+   pass produced came from _disagreement_; the 75 agreements included items both
+   of us could have had wrong.
+2. **Option-letter errors are the dominant failure mode** — 17 in total across
+   three passes, almost all with correct physics behind them.
+3. **A solver fed text instead of page images degrades in a specific way**: it
+   invents "unreadable" and it misreads the paper's category structure. It also
+   still found two real errors, so it was worth running.
+4. **A question with "no correct option" is more likely my error than the
+   paper's.** Both disputes dissolved under a re-derivation.

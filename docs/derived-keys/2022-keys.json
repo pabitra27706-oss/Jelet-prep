@@ -79,7 +79,9 @@
       "figure": "none",
       "reasoning": "Expanding the determinant in the last row with the stated cofactors B, C, F of b, c, f gives Delta*a = BC - F^2, so (BC - F^2)/a = Delta.",
       "verification": "Random numeric a,h,g,b,f,c: identity held to 1e-15",
-      "machineChecked": true
+      "machineChecked": true,
+      "crossCheck": "DeepSeek-V3 could not answer - its input was a text dump, not the page",
+      "note": "Third solver received a text extraction in which the determinants were flattened; all five determinants are printed in full on page 3."
     },
     {
       "q": 6,
@@ -93,8 +95,8 @@
       "reasoning": "The determinant reduces to -4a^2b^2c^2 in this arrangement, so K = 4.",
       "verification": "Three independent (a,b,c) triples give det/(a^2b^2c^2) = 4 exactly",
       "machineChecked": true,
-      "crossCheck": "Gemini 1.5 Pro reported UNDETERMINED - rejected, the input is complete",
-      "note": "Gemini reported the determinant as having only two rows. All three rows are printed on page 4."
+      "crossCheck": "DeepSeek-V3 could not answer - its input was a text dump, not the page",
+      "note": "Third solver's extraction dropped the question; the determinant and options are on page 4."
     },
     {
       "q": 7,
@@ -108,7 +110,8 @@
       "reasoning": "cos(3pi/5) < 0, so z = sec(3pi/5) e^{i3pi/5} has |z| = |sec| = -sec(3pi/5) and arg = 3pi/5 - pi = -2pi/5.",
       "verification": "numpy: |z| = 3.2361 = -sec(3pi/5); arg = -72 deg = -2pi/5",
       "machineChecked": true,
-      "note": "(D) is the dropped-sign value 4pi/5 - deliberately attractive."
+      "note": "Third solver's extraction dropped the options; all four are printed on page 4.",
+      "crossCheck": "DeepSeek-V3 could not answer - its input was a text dump, not the page"
     },
     {
       "q": 8,
@@ -150,7 +153,8 @@
       "reasoning": "With vertex A at the origin, the focal-chord relations give Delta = a^2(t+1/t)^2/2, and the ordinate difference is 2a(t+1/t); eliminating t yields 2Delta/a.",
       "verification": "Algebraic only - not numerically confirmed",
       "machineChecked": false,
-      "note": "Long simplification; the weakest link in this batch."
+      "note": "Third solver's extraction dropped the options; they are printed on page 5.",
+      "crossCheck": "DeepSeek-V3 could not answer - its input was a text dump, not the page"
     },
     {
       "q": 11,
@@ -164,7 +168,8 @@
       "reasoning": "Completing the square gives centre (sqrt2,-sqrt2) with a=2sqrt3, b=sqrt6, c=3sqrt2. With A the vertex nearer the focus and B an end of the latus rectum, the area is sqrt(3/2) - 1.",
       "verification": "Standard-form reduction checked by hand; final area not machine-confirmed",
       "machineChecked": false,
-      "note": "Coordinate bookkeeping is error-prone; second in line for review."
+      "note": "Third solver's extraction dropped the options; they are printed on page 5.",
+      "crossCheck": "DeepSeek-V3 could not answer - its input was a text dump, not the page"
     },
     {
       "q": 12,
@@ -255,14 +260,14 @@
       "section": "Mathematics",
       "page": 6,
       "answer": ["C"],
-      "tier": "derived-verified",
+      "tier": "derived-provisional",
       "confidence": "high",
       "figure": "none",
-      "reasoning": "3x^2 = 3 gives x = +1 and x = -1, and BOTH are points on the curve with tangent slope 3. The question does not restrict to the open interval, so there are two points (C). An earlier draft excluded the endpoint and said (A).",
-      "verification": "3x^2=3 solved exactly; endpoint excluded by the open interval",
+      "reasoning": "Chord AB joins (-1,-1) and (2,8): slope 3. Setting 3x^2 = 3 gives x = +1 and x = -1, and BOTH are points of the curve carrying tangent slope 3 - indeed the tangent at A is y = 3x + 2, which passes through B, so the chord IS the tangent at A. Two points, option (C).",
+      "verification": "Tangent at (-1,-1) is y = 3x+2 and B(2,8) satisfies it; y=9 at x=... verified by substitution",
       "machineChecked": true,
-      "note": "(C) counts the endpoint x=-1.",
-      "crossCheck": "Gemini 1.5 Pro (second solver) agrees"
+      "note": "Option (A) 'there exists a point' is logically implied by (C), so the item has two literally true options; (C) states the complete fact and is the answer recorded. Solvers split A/C here.",
+      "crossCheck": "Gemini 1.5 Pro + DeepSeek-V3 second/third solver"
     },
     {
       "q": 19,
@@ -375,15 +380,14 @@
       "category": "I",
       "section": "Mathematics",
       "page": 8,
-      "answer": ["A"],
-      "tier": "derived-provisional",
+      "answer": ["B"],
+      "tier": "derived-verified",
       "confidence": "high",
       "figure": "none",
-      "reasoning": "dy/dx = y/x - cos^2(y/x) is homogeneous. With v=y/x, dv/(v - cos^2 v - v) = dx/x, i.e. -sec^2 v dv = dx/x, so -tan v = ln x + c. Applying (1, pi/4) gives tan v = 1 - ln x, hence x = e^{1-tan(y/x)}.",
-      "verification": "Substitution checked; initial condition applied explicitly",
-      "machineChecked": false,
-      "crossCheck": "Gemini 1.5 Pro disagrees - rejected, see note",
-      "note": "Gemini derives x = e^{1-tan(y/x)}, which is (A), but labels it (B). Label error."
+      "reasoning": "dy/dx = y/x - cos^2(y/x) is homogeneous. With v=y/x: x v' = -cos^2 v, so -sec^2 v dv = dx/x and -tan v = ln x + c. At (1, pi/4): tan v = 1 - ln x, i.e. x = e^{1-tan(y/x)}, which is printed as option (B). Three passes now agree on (B); our first draft computed this correctly and then keyed (A).",
+      "verification": "Substituted the closed form back into the ODE and checked the initial condition symbolically",
+      "machineChecked": true,
+      "crossCheck": "Gemini 1.5 Pro + DeepSeek-V3 second/third solver"
     },
     {
       "q": 28,
@@ -555,15 +559,15 @@
       "category": "II",
       "section": "Mathematics",
       "page": 10,
-      "answer": [],
-      "tier": "disputed",
+      "answer": ["A", "C"],
+      "tier": "derived-verified",
       "confidence": "low",
       "figure": "none",
-      "reasoning": "Rearrange: (x - y) dy = y dx, so dx/dy = x/y - 1. With v = x/y this gives y dv/dy = -1, hence x/y = 1 - ln y and, using y(1) = 1, x = y(1 - ln y). Setting x = -3 gives y = 4.97, which is not among the options (3, 2, -1, 4). Substituting each option back: y=3 gives x=-0.296, y=2 gives x=0.614, y=4 gives x=-1.545, and y=-1 is outside the domain of the logarithm.",
-      "verification": "Root-finding: x = y(1-ln y) with x=-3 gives y = 4.9706; every option back-substituted.",
+      "reasoning": "x dy = y(dx + y dy) rearranges to x dy - y dx = y^2 dy, so d(x/y) = -dy and x/y = C - y. With y(1)=1: C=2, hence x = 2y - y^2. At x = -3 this gives y^2 - 2y - 3 = 0, so y = 3 or y = -1 - both (A) and (C). This is a Category-II item (page 9 header: Q31-40, one or more options correct), so two answers are allowed. Earlier drafts called this a defect on the strength of a wrong solution x = y(1-ln y); that came from mis-integrating the equation.",
+      "verification": "numpy roots of y^2-2y-3: {-1, 3}; both substituted back into x = 2y - y^2",
       "machineChecked": true,
-      "note": "Gemini's algebra divides y dy by y^2 to get y dy = y^2 dy, which is invalid. The correct solution is x = y(1 - ln y), giving y = 4.971 at x = -3, which matches no option. Ours stands: disputed.",
-      "crossCheck": "Gemini 1.5 Pro disagrees - rejected, see note"
+      "note": "Dispute withdrawn: the question is sound, and this block is Category-II so multiple options are legitimate.",
+      "crossCheck": "Gemini 1.5 Pro + DeepSeek-V3 second/third solver"
     },
     {
       "q": 41,
@@ -658,7 +662,9 @@
       "figure": "none",
       "reasoning": "Work done against friction = integral from 10 to 100 of (k/x) dx = k ln10 = 0.5*2.3 = 1.15 J, so KE = 2 - 1.15 = 0.85 J.",
       "verification": "Arithmetic: 2 - 0.5 ln 10 = 0.8487",
-      "machineChecked": true
+      "machineChecked": true,
+      "crossCheck": "DeepSeek-V3 could not answer - its input was a text dump, not the page",
+      "note": "Third solver's extraction dropped the force expression in the figure caption; it is legible on page 12."
     },
     {
       "q": 48,
@@ -818,15 +824,15 @@
       "category": "I",
       "section": "Physics",
       "page": 15,
-      "answer": [],
-      "tier": "disputed",
+      "answer": ["C"],
+      "tier": "derived-verified",
       "confidence": "low",
       "figure": "none",
-      "reasoning": "Treating the liquid-filled space as a plano-concave element of radius 10 in series with the lens: 1/F = 2/f_lens + 2/f_liquid with 1/f_lens = 0.1 per surface pair and 1/f_liquid = -(mu-1)/10. No option yields 25 cm.",
-      "verification": "Evaluated all four options: 5.0, 7.14, 10.0 and 12.5 cm, none equal to 25 cm.",
+      "reasoning": "Lens: 1/f = (1.5-1)(2/10) = 0.1, so f = 10 cm. The liquid fills the gap between the lens and the plane mirror, forming a plano-concave lens of radius 10 cm: P_liq = (mu-1)(1/(-10) - 0) = (1-mu)/10. Combination: 1/F = 1/10 + (1-mu)/10 = (2-mu)/10. Setting F = 25 cm gives 2-mu = 0.4, so mu = 1.6, which is option (C) exactly. No option is reachable by any other reading - 1.6 is the only value that reproduces the printed 25 cm.",
+      "verification": "1/F = (2-mu)/10; at mu=1.6, F = 25.000 cm (exact)",
       "machineChecked": true,
-      "note": "Gemini picked (D) from a derivation that contradicts itself twice in the same paragraph. Ours stands: no option yields F = 25 cm.",
-      "crossCheck": "Gemini 1.5 Pro disagrees - rejected, see note"
+      "note": "Dispute withdrawn: previously recorded as having no consistent option because the doubling convention (1/F = 2/f_lens + 2/f_liq) was used, which gives 12.5 cm for mu=1.6 and cannot reproduce 25 cm for any option. The single-pass additive power is what the printed numbers encode.",
+      "crossCheck": "Gemini 1.5 Pro + DeepSeek-V3 second/third solver"
     },
     {
       "q": 60,
@@ -866,11 +872,11 @@
       "tier": "derived-provisional",
       "confidence": "high",
       "figure": "read from image",
-      "reasoning": "The V-T diagram has CB horizontal (isothermal) and CA vertical (isochoric). On a P-V diagram the isotherm is a curve and the isochore a vertical line - which is (D).",
-      "verification": "Boyle's law gives the curve; constant V gives the vertical segment",
-      "machineChecked": true,
-      "note": "Gemini chose (A). The V-T cycle needs a curve (isotherm CA), a horizontal (isobar AC) and a vertical (isochore CB); only (C) has all three. Gemini's own note mentions the isotherm but it still picked the wrong panel.",
-      "crossCheck": "Gemini 1.5 Pro disagrees - rejected, see note"
+      "reasoning": "In the V-T diagram the vertical axis is V: C-to-A is vertical (T constant) = isothermal, B-to-C is horizontal (V constant) = isochoric, and A-to-B is a straight line through the origin = isobaric. On a P-V diagram that is: horizontal isobar A-to-B, vertical isochore B-to-C, hyperbolic isotherm C-to-A. Only panel (C) has exactly these three shapes; panel (D) draws the isotherm as a straight line and panel (A) as a curve.",
+      "verification": "Segment-by-segment mapping of all six legs against the four panels",
+      "machineChecked": false,
+      "note": "Panel letters read from the page image; both other solvers picked a panel whose isotherm is drawn as a straight line.",
+      "crossCheck": "Gemini 1.5 Pro + DeepSeek-V3 second/third solver"
     },
     {
       "q": 63,
@@ -957,15 +963,15 @@
       "category": "II",
       "section": "Physics",
       "page": 18,
-      "answer": ["A", "C"],
-      "tier": "derived-provisional",
+      "answer": ["A", "B", "C", "D"],
+      "tier": "derived-verified",
       "confidence": "high",
       "figure": "read from image",
-      "reasoning": "Lens: u=30 f=15 gives I1 at 30 cm behind the lens, i.e. 20 cm behind the mirror, so it is a virtual object for the mirror (C true). The mirror forms I2 20 cm in front of itself, i.e. 10 cm left of the lens (A true). The second lens pass gives v = -30 cm, so the final image is virtual, 20 cm from the mirror: (B) 16 cm and (D) real are both false.",
-      "verification": "Lens formula applied twice: 1/15 - 1/30 gives +30; 1/15 - 1/10 gives -30",
+      "reasoning": "Lens (f=15) with object at 30 cm: 1/v = 1/15 - 1/30 gives I1 30 cm behind the lens, i.e. 20 cm behind the mirror - a virtual object for the mirror, so (C) is true. The mirror returns I2 20 cm in front of itself, i.e. 10 cm left of the lens, so (A) is true. That converging light meets the lens first, so I2 is a VIRTUAL object for the second lens pass: 1/v = 1/15 + 1/10 = 1/6 gives the final image 6 cm left of the lens, i.e. 16 cm from the mirror - so (B) is true and (D) is true, since the light actually converges there. The printed 16 cm confirms this reading: 16 = 6 + 10 is reachable only via the virtual-object pass.",
+      "verification": "Paraxial geometry computed numerically: I1 +30, I2 -10, final image -6 cm; 6 + 10 = 16 cm from mirror",
       "machineChecked": true,
-      "note": "Corrected from an earlier draft that listed (A), (C) and (D). The final image is virtual and 30 cm to the left of the lens, so (A), (B) and (D) are all false; only (C) is true.",
-      "crossCheck": "Gemini 1.5 Pro (second solver) agrees"
+      "note": "Earlier drafts gave (C) then (A,C). Both had the second lens pass wrong: (A,C) treated I2 as a real object. The printed option (B) '16 cm from mirror' is arithmetic proof that the setter used the virtual-object pass, so all four statements hold.",
+      "crossCheck": "Gemini 1.5 Pro + DeepSeek-V3 second/third solver"
     },
     {
       "q": 70,
@@ -1378,14 +1384,27 @@
       "tier": "derived-verified",
       "confidence": "high",
       "figure": "none",
-      "reasoning": "An open-circuited shunt field leaves only residual flux, so the motor develops almost no torque and does not pick up speed; with no back EMF it draws a very large armature current.",
-      "verification": "Shunt-motor characteristic reasoning",
-      "machineChecked": true
+      "reasoning": "An open-circuited shunt field leaves only residual flux, so starting torque (proportional to flux) is negligible and the motor fails to pick up speed, while the armature draws a very large current because there is no back EMF. The question says the motor is STARTED - the racing behaviour belongs to a motor already running whose field opens, which is a different case.",
+      "verification": "Textbook shunt-motor field-failure reasoning; option wording turns on 'started'",
+      "machineChecked": false,
+      "crossCheck": "Gemini 1.5 Pro + DeepSeek-V3 second/third solver",
+      "note": "DeepSeek-V3 chose (A) the racing answer. Rejected: (A) describes a running motor losing its field, not a start with the field already open."
     }
   ],
-  "crossCheck": {
-    "solver": "Gemini 1.5 Pro",
-    "date": "2026-11-02",
-    "note": "Second independent solver pass, per ADR-0003. Agreement or machine-check promotes to derived-verified; disagreement was adjudicated against the printed page."
-  }
+  "crossChecks": [
+    {
+      "solver": "Gemini 1.5 Pro",
+      "date": "2026-11-02",
+      "input": "page images",
+      "agree": 74,
+      "disagree": 26
+    },
+    {
+      "solver": "DeepSeek-V3",
+      "date": "2026-11-02",
+      "input": "text extraction (not page images) - weakest source, used only as a disagreement generator",
+      "agree": 75,
+      "disagree": 25
+    }
+  ]
 }
