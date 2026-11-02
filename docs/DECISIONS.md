@@ -55,3 +55,10 @@ Historical planning-stage boundary: only documentation work was authorized in th
 - O-08: Owner instructed “merge it to main”, authorizing the Phase 1 commit, branch push, pull request and merge. This does not authorize public deployment or Phase 2.
 - Revalidated before merge: formatting, 18 unit tests, TypeScript/production build, 10 production-preview browser tests and whitespace checks passed locally. Remote CI is not configured.
 - Outstanding source-verification/publication gates remain; merge authorization is not recorded as blanket visual-token or content-accuracy approval.
+
+## Public website deployment — 2026-11-02
+- O-09: Owner explicitly approved adding the build workflow, merging into main, switching Pages to GitHub Actions and publishing the current reading website.
+- Diagnosis: Pages previously used legacy main/root publishing, which does not compile the Vite TypeScript entry point. The new workflow checks/builds the app and publishes only `dist/`.
+- Deployment target: https://pabitra27706-oss.github.io/Jelet-prep/ . Existing relative asset paths and hash routes are retained for repository-subpath hosting.
+- Pull requests run build checks without deploying. Main pushes/manual dispatch build then deploy through the github-pages environment with job-scoped Pages/OIDC permissions. No custom credentials are stored.
+- This authorizes public deployment of the current labelled reader, not verified exam-content status or implementation of Phase 2.

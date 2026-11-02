@@ -38,3 +38,11 @@ Routes use hashes (for example `/#/papers/2024?q=2`), allowing refresh without S
 Existing raw Markdown and legacy HTML are preserved. The modern runtime bundles its own renderers/fonts; it does not fetch CDN scripts. Repo licence and exam-content publication rights remain owner/publication-review decisions; do not assume a third-party package licence covers question papers.
 
 Start with [documentation](docs/README.md), [roadmap](docs/ROADMAP.md), [phase 1 evidence](docs/phases/01-library-and-reader.md), [content inventory](docs/CONTENT-INVENTORY.md) and [dependencies](docs/DEPENDENCIES.md).
+
+## Public website and deployment
+
+Website: **https://pabitra27706-oss.github.io/Jelet-prep/**
+
+`.github/workflows/pages.yml` installs locked dependencies, checks formatting, runs unit tests and builds Vite. Pull requests only validate; pushes to `main` publish the built `dist/` artifact through GitHub Pages. Pages settings must use **GitHub Actions**, not branch/root publishing. No custom deployment secrets are needed.
+
+Check the **Actions → Build and deploy website** run before assuming a change is live. To retry a deployment, use its manual workflow trigger on `main`. To roll back, revert the problematic change through a reviewed PR; the resulting main push republishes the prior application. Deployment does not erase the original repository content, but only compiled website assets are published.
