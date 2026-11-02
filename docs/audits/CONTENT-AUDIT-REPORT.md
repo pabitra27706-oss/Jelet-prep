@@ -1,7 +1,7 @@
 # Phase 0-A — Content audit report
 
 Recorded 2026-11-02. Machine-generated numbers come from
-[`content-audit.md`](audits/content-audit.md) / `content-audit.json`; the source
+[`content-audit.md`](content-audit.md) / `content-audit.json`; the source
 register is `src/audit/sources.ts`.
 
 **Evidence standard.** Official links and titles below were read from the WBJEEB
