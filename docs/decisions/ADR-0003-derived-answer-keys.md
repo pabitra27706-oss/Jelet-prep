@@ -24,22 +24,22 @@ A contiguous 15-question sample was solved from **rendered official pages**
 (JELET-2024 pages 3, 11 and 19), not from the transcription. Eight answers were
 then checked by machine rather than by confidence.
 
-| Q        | Topic                                  | Answer             | How it was checked                                   |
-| -------- | -------------------------------------- | ------------------ | ---------------------------------------------------- |
-| 2024 Q1  | orthogonal matrices, det A + det B = 0 | (A) singular       | 20,000 random orthogonal pairs, zero counterexamples |
-| 2024 Q2  | rank of 3×3                            | (C) rank = 2       | numeric rank                                         |
-| 2024 Q3  | A^K for given A                        | (A)                | matrix identity verified for K = 1…6                 |
-| 2024 Q4  | determinant as polynomial in λ         | (C) 21             | numeric determinant                                  |
-| 2024 Q41 | dimensions with v, t, F basic          | (B) FTv⁻¹          | dimensional algebra                                  |
-| 2024 Q42 | projectile speed–time graphs           | (A)                | figure reasoning                                     |
-| 2024 Q43 | refraction, λ₁ vs λ₂                   | (B)                | Snell + λ ∝ 1/n                                      |
-| 2024 Q71 | atoms in 52 g He                       | (C) 7.829×10²⁴     | arithmetic                                           |
-| 2024 Q72 | electron filling order                 | (A) Aufbau         | definitional                                         |
-| 2024 Q73 | He⁺ most probable radius               | (C) 26.5 pm        | arithmetic                                           |
-| 2024 Q74 | NaCl unit cell                         | (C) 144 pm         | arithmetic                                           |
-| 2024 Q75 | electrons from 1 A × 10 min            | (A) 3.75×10²¹      | arithmetic                                           |
-| 2024 Q76 | phenol + bromine water                 | (D)                | standard reaction                                    |
-| 2024 Q77 | stereoisomers of 2,3-dibromobutane     | (B) 3 (incl. meso) | stereochemistry                                      |
+| Q        | Topic                                  | Answer               | How it was checked                                    |
+| -------- | -------------------------------------- | -------------------- | ----------------------------------------------------- |
+| 2024 Q1  | orthogonal matrices, det A + det B = 0 | (A) singular         | 20,000 random orthogonal pairs, zero counterexamples  |
+| 2024 Q2  | rank of 3×3                            | (C) rank = 2         | numeric rank                                          |
+| 2024 Q3  | A^K for given A                        | (A)                  | matrix identity verified for K = 1…6                  |
+| 2024 Q4  | determinant as polynomial in λ         | (C) 21               | numeric determinant                                   |
+| 2024 Q41 | dimensions with v, t, F basic          | (B) FTv⁻¹            | dimensional algebra                                   |
+| 2024 Q42 | projectile speed–time graphs           | (A)                  | figure reasoning                                      |
+| 2024 Q43 | refraction, λ₁ vs λ₂                   | (B) — **see Errata** | Snell + λ ∝ 1/n; figure re-read at 500 dpi 2026-11-02 |
+| 2024 Q71 | atoms in 52 g He                       | (C) 7.829×10²⁴       | arithmetic                                            |
+| 2024 Q72 | electron filling order                 | (A) Aufbau           | definitional                                          |
+| 2024 Q73 | He⁺ most probable radius               | (C) 26.5 pm          | arithmetic                                            |
+| 2024 Q74 | NaCl unit cell                         | (C) 144 pm           | arithmetic                                            |
+| 2024 Q75 | electrons from 1 A × 10 min            | (A) 3.75×10²¹        | arithmetic                                            |
+| 2024 Q76 | phenol + bromine water                 | (D)                  | standard reaction                                     |
+| 2024 Q77 | stereoisomers of 2,3-dibromobutane     | (B) 3 (incl. meso)   | stereochemistry                                       |
 
 15/15, eight of them independently machine-verified.
 
@@ -116,6 +116,35 @@ source of a key. They are unverified, frequently wrong, and often compiled from
 someone else's work. They may be consulted only as a _disagreement trigger_ — if a
 third party disagrees with our solved answer, that question gets re-examined.
 Consulting them is not copying them.
+
+## Errata — 2024 Q43 (corrected 2026-11-02)
+
+The first pass recorded this answer as **(C)**. That was wrong, and it was wrong
+for an instructive reason rather than a slip.
+
+The reasoning offered was "bends toward normal ⇒ n₂ > n₁ ⇒ λ₂ < λ₁ ⇒ (C)". The
+premise is what fails. On re-reading the figure at 500 dpi, the refracted ray in
+medium 2 stands **further from the normal** than the incident ray in medium 1, so
+n₂ < n₁ and λ₂ > λ₁, which is option **(B)**, λ₂ = (sin α₂ / sin α₁) λ₁.
+
+Two things follow, and the second matters more than the first.
+
+1. **The wrong answer came from a misread figure, not a misremembered formula.**
+   The optics reasoning was sound; the input was wrong.
+2. **The answer does not depend on reading the figure at all.** Whatever the drawn
+   angles, (B) is the only option consistent with Snell's law; (C) is its
+   reciprocal, and (A) and (D) are inconsistent with a ratio of sines. This
+   question was answerable with certainty from the options alone, and the figure
+   only supplies confidence.
+
+That is exactly the error class being risked at scale if a key is produced by one
+pass. It was caught because the figure was re-examined at higher resolution and
+because the reasoning was written down where it could be attacked. A key produced
+from remembered conclusions would have shipped it.
+
+It also sets a firm rule for the derived-key work: **a stated answer must record
+how it was reached**, so a later checker can attack the reasoning rather than
+compare two letters.
 
 ## Cost
 

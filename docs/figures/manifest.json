@@ -570,9 +570,10 @@
    "figureKind": "mechanics",
    "kindReviewed": false,
    "optionsAreFigures": false,
-   "status": "not started",
-   "svg": "placeholder",
-   "altText": null
+   "status": "reconstructed (pilot)",
+   "svg": "docs/figures/pilot/2024-q43-refraction.svg",
+   "altText": "written",
+   "deviations": "Schematic, not to scale (as in the source). Refracted ray drawn bending away from the normal, alpha_2 > alpha_1, per the source sketch."
   },
   {
    "id": "jelet-p1-2024:q45",
