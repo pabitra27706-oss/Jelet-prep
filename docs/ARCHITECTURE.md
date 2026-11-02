@@ -62,5 +62,27 @@ Runtime assets locally bundled; content and app builds versioned together. Use r
 ## Open architecture decisions to close in phase 0
 One maths renderer; dependency versions/licences; static host/routing strategy; supported browsers; content packaging; plain-text/Markdown rendering policy; IndexedDB adapter; cache tooling; multi-tab coordination; translation format if selected; exact performance budgets. Researchable choices are agent decisions with evidence, not repeated owner questions.
 
-## Implemented subset — 2026-11-02
-React + TypeScript + Vite, plain CSS (not Tailwind), hash routes, lazy raw-content chunks and lazy sanitized KaTeX renderer are installed. Exact package versions and licence/activity signals are in DEPENDENCIES.md. Current routes are overview, papers/library, paper reader, syllabus and about/sources. Future study/practice/download routes listed above do not exist yet. Theme alone uses localStorage; IndexedDB and service-worker adapters are deferred. The legacy files remain unchanged. Local tests/build pass; no remote CI or public deployment is claimed.
+## Implemented subset — 2026-11-02 (Phase 1, merged and deployed)
+React + TypeScript + Vite, plain CSS (not Tailwind), hash routes, lazy raw-content chunks and lazy sanitized KaTeX renderer are installed. Exact package versions and licence/activity signals are in DEPENDENCIES.md. Routes at that point: overview, papers/library, paper reader, syllabus and about/sources. The legacy files remain unchanged.
+
+## Implemented subset — Phase 2 (2026-11-02, preview review pending)
+- **Routes added:** `/saved` (bookmarks and notes), `/progress` (derived local
+  dashboard) and `/settings` (storage state, backup export, validated import,
+  reset). `/` gained a real workspace summary with a "continue reading" row.
+  `/practice`, `/results`, `/history` and `/downloads` from the proposed map
+  still do not exist; attempt history belongs to Phase 3.
+- **Layering now enforced:** `src/study/db.ts` (only IndexedDB adapter) →
+  `src/study/repository.ts` (only write path, transactional) →
+  `src/study/StudyProvider.tsx` (React state, honest save/unsaved feedback,
+  multi-tab refresh) → screens. Pure rules live in `src/study/records.ts` and
+  `src/study/backup.ts`, both browser-free and unit-tested.
+- **Data contract:** see `docs/STUDY-DATA.md` (stores, limits, migrations, error
+  taxonomy, multi-tab policy, backup envelope, merge/replace rules, reset).
+- **Content identity:** `CONTENT_VERSION` plus derived paper/question/topic IDs;
+  a pinned corpus fingerprint in `src/study/ids.test.ts` fails the unit tests if
+  the source Markdown changes without a version decision.
+- **Theme:** localStorage (unchanged) and deliberately separate from study data,
+  so a reset never changes appearance. Dark-theme canvas contrast was corrected.
+- **Still deferred:** service-worker/offline adapter, scored practice, answer
+  keys, cross-device sync, accounts and analytics. No runtime dependency was
+  added in Phase 2; `fake-indexeddb` and `@types/node` are development-only.

@@ -23,6 +23,9 @@ Sanitize rendered content; no arbitrary script execution from Markdown/imports. 
 - Dependency and content rights reviewed; repository licence chosen by owner before publication.
 - Official-source links, credits, privacy and independent-site statement present.
 - No dead controls, fake stats, fabricated explanations or hidden placeholder features.
+- Local-only claims match behaviour: storage denial/quota produces an explicit
+  "not saved" state, the dashboard shows only derived counts, and scored practice
+  is described as absent rather than displayed as zeros.
 - Working preview and production artifact inspected; unresolved risks disclosed.
 - Hosting/domain configuration verified; public deployment separately authorized.
 

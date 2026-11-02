@@ -1,6 +1,6 @@
 # Pre-code readiness and execution contract
 
-Status: phase 1 implementation authorized on 2026-11-02 and delivered for preview review. This checklist retains the original pre-code gates; see phase 1 evidence for current results.
+Status: Phase 1 merged/deployed; Phase 2 (persistent study workspace) implemented 2026-11-02 for preview review. The original pre-code gates below remain partly open and are not marked complete; see the phase 2 evidence record for current results.
 
 ## What “fully prepared” means
 Every major capability has a bounded work package, an owner for unresolved decisions, a data contract, failure behaviour, acceptance tests and an exit gate. It does not mean every research uncertainty is resolved or that coding will reveal no new issues.
@@ -20,7 +20,9 @@ Use one combined decision batch; do not re-ask confirmed requirements. Complete 
 - [ ] Rights/credit issues are explicit; owner selects repository licence before publication.
 - [ ] Candidate dependency versions, licences and maintenance verified; reuse choices recorded.
 - [ ] Maths renderer tested against representative repository notation.
-- [ ] Routing/base path, browser support, storage/versioning and scoring contracts recorded.
+- [~] Routing/base path and storage/versioning contracts recorded
+  (`docs/ARCHITECTURE.md`, `docs/STUDY-DATA.md`). Browser-support matrix and
+  scoring contracts remain open.
 
 These research tasks can be completed during approved phase 0; they must close before the affected implementation or publication. Documentation alone does not claim they are already done.
 
@@ -57,5 +59,13 @@ These research tasks can be completed during approved phase 0; they must close b
 | Historic pattern mismatch | Old stream/category differs | Source-specific patterns; no current-rule assumption |
 | Scope creep | Accounts, AI lessons, rankings requested mid-phase | Record change; reprice/approve before implementing |
 
+## Phase 2 status note (2026-11-02)
+Storage/versioning is now implemented and tested; it does not close Gate B's
+content-audit items. Still open: full official-source comparison of all seven
+papers, answer-key availability and set mapping, rights/licence review, owner
+design approval for the new workspace screens, manual assistive-technology pass,
+cross-browser matrix and scoring contracts (Phase 3). Multi-tab and storage-failure
+behaviour are now defined and tested rather than deferred.
+
 ## What is intentionally not ready yet
-Dependencies and local build/test tooling are now installed; see DEPENDENCIES.md and phase 1 evidence for actual checks. Full dataset audit/key verification, owner design/token approval, remote CI, hosting selection and repository/content licence review remain open. No public deployment is authorized. These are visible tasks, not concealed completion claims.
+Dependencies and local build/test tooling are installed; see DEPENDENCIES.md, phase 1 and phase 2 evidence for actual checks. Full dataset audit/key verification, owner design approval, remote CI/local-only run logs, cross-browser testing and repository/content licence review remain open. Phase 1 is publicly deployed (owner-approved); no further deployment, PR or merge is authorized by the Phase 2 instruction. These are visible tasks, not concealed completion claims.

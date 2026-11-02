@@ -55,6 +55,62 @@ export const papers = [
   },
 ];
 export type Paper = (typeof papers)[number];
+
+/**
+ * Version of the study-content identity space (question/topic IDs).
+ * Bump whenever paper or syllabus content changes in a way that can move IDs.
+ * `src/study/ids.test.ts` pins a fingerprint of the source corpus so a content
+ * edit without a version bump fails the unit tests instead of silently
+ * mislabeling saved bookmarks, notes or topic status.
+ */
+export const CONTENT_VERSION = "2026-11-02.1";
+
+/** Stream/paper prefix kept out of URLs: Engineering & Technology, Paper I. */
+export function paperId(year: number) {
+  return `jelet-et-p1-${year}`;
+}
+
+export function questionId(year: number, number: number) {
+  return `${paperId(year)}:q${number}`;
+}
+
+export function paperYearFromId(id: string) {
+  const match = /^jelet-et-p1-(\d{4})$/.exec(id);
+  return match ? Number(match[1]) : null;
+}
+
+export function paperFromQuestionId(id: string) {
+  const match = /^(jelet-et-p1-\d{4}):q(\d{1,3})$/.exec(id);
+  return match
+    ? { year: Number(match[1].slice(-4)), number: Number(match[2]) }
+    : null;
+}
+
+export function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function subjectId(short: string) {
+  return `jelet-syllabus:${slugify(short)}`;
+}
+
+export function topicId(short: string, index: number) {
+  return `${subjectId(short)}:t${String(index + 1).padStart(2, "0")}`;
+}
+
+export function isQuestionId(id: string) {
+  const parsed = paperFromQuestionId(id);
+  return parsed !== null && parsed.number >= 1 && parsed.number <= 100;
+}
+
+export function isTopicId(id: string) {
+  return /^jelet-syllabus:[a-z0-9-]+:t\d{2}$/.test(id);
+}
+
 export interface Question {
   number: number;
   text: string;
@@ -119,10 +175,12 @@ export function filterPapers(query: string, era: string) {
   );
 }
 export interface Topic {
+  id: string;
   title: string;
   body: string;
 }
 export interface Subject {
+  id: string;
   name: string;
   short: string;
   color: string;
@@ -140,15 +198,21 @@ export function parseSyllabus(raw: string): Subject[] {
         .join("\n")
         .replace(/\n---\s*$/, "")
         .trim();
-      let topics: Topic[] = [];
+      const short = [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Electrical & Electronics",
+      ][i];
+      let raw: { title: string; body: string }[] = [];
       if (body.startsWith("**")) {
         const parts = body.split(/\n(?=\*\*[A-Z]\. )/);
-        topics = parts.filter(Boolean).map((p) => {
+        raw = parts.filter(Boolean).map((p) => {
           const m = p.match(/^\*\*(.*?)\*\*\s*([\s\S]*)/);
           return { title: m?.[1] || "Topic", body: m?.[2] || p };
         });
       } else {
-        topics = body
+        raw = body
           .split("\n")
           .filter((l) => l.startsWith("- **"))
           .map((p) => {
@@ -159,14 +223,15 @@ export function parseSyllabus(raw: string): Subject[] {
             };
           });
       }
+      // Topic IDs are positional within the preserved syllabus summary.
+      const topics: Topic[] = raw.map((t, index) => ({
+        ...t,
+        id: topicId(short, index),
+      }));
       return {
+        id: subjectId(short),
         name: title.replace(/^\d+\. /, "").trim(),
-        short: [
-          "Mathematics",
-          "Physics",
-          "Chemistry",
-          "Electrical & Electronics",
-        ][i],
+        short,
         color: ["green", "blue", "orange", "purple"][i],
         topics,
       };

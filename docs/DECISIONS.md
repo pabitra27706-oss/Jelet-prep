@@ -62,3 +62,37 @@ Historical planning-stage boundary: only documentation work was authorized in th
 - Deployment target: https://pabitra27706-oss.github.io/Jelet-prep/ . Existing relative asset paths and hash routes are retained for repository-subpath hosting.
 - Pull requests run build checks without deploying. Main pushes/manual dispatch build then deploy through the github-pages environment with job-scoped Pages/OIDC permissions. No custom credentials are stored.
 - This authorizes public deployment of the current labelled reader, not verified exam-content status or implementation of Phase 2.
+
+## Phase 2 execution — 2026-11-02
+- O-10: Owner instructed “START PHASE 2 — PERSISTENT STUDY WORKSPACE” with the
+  eight numbered requirements, the content limits and the explicit instruction to
+  stop before opening/merging a PR or deploying. This authorizes Phase 2
+  implementation and local validation on the assigned branch only.
+- Reversible technical choices (recorded, not owner questions):
+  - IndexedDB used directly through a thin, versioned adapter instead of an
+    `idb`/Dexie dependency. Rationale: one fewer runtime dependency, migrations
+    visible in-repo, browser semantics unchanged. See `docs/STUDY-DATA.md`.
+  - Six object stores, one per record type, with derived deterministic keys
+    (one position per paper, one note per question, history keyed by timestamp).
+  - Content IDs are year-based (`jelet-et-p1-<year>:q<n>`) rather than
+    array-index based, so adding a paper cannot renumber existing references. A
+    pinned corpus fingerprint plus `CONTENT_VERSION` guards unreviewed edits.
+  - Absence of a topic record means "not started"; only `studying` and `revised`
+    are stored, so a cleared status and a never-set status cannot diverge.
+  - Multi-tab: `BroadcastChannel` re-read of committed state, `visibilitychange`
+    refresh, explicit note conflict choice, and merge re-read inside the import
+    transaction. Reading positions are documented last-write-wins markers.
+  - Import merge rule: newest `createdAt`/`updatedAt` wins, ties keep the local
+    record; re-import is idempotent. Replace requires typing `REPLACE` and stores
+    a pre-replace safety copy in `meta`. Import is atomic per transaction.
+  - Notes are plain text (2000-character limit) and are never rendered as markup.
+  - Phase 1 dark theme had a page-canvas contrast defect (light canvas, light
+    text); fixed by setting the canvas in the dark `:root`. Light palette and
+    layout are unchanged. This is the "documented adjustment" allowed for an
+    accessibility defect.
+  - New dev-only dependency `fake-indexeddb` (Apache-2.0) to test the real
+    adapter/migrations in Node, and `@types/node` for the test fingerprint hash.
+    No runtime dependency was added.
+- Not done and not claimed: scored practice, answer keys, attempts, offline
+  downloads, accounts, cloud sync, analytics, ads, payments, PR/merge/deploy,
+  manual screen-reader audit, cross-browser matrix, full source verification.
