@@ -117,6 +117,45 @@ someone else's work. They may be consulted only as a _disagreement trigger_ — 
 third party disagrees with our solved answer, that question gets re-examined.
 Consulting them is not copying them.
 
+## Second pilot batch — Category-II multi-answer (2026-11-02)
+
+The first batch was all easy single-answer items, which proved little about the hard
+tail. This batch is drawn from JELET-2024 Category-II (page 9), where _one or more_
+options are correct and every option must be adjudicated separately.
+
+| Q        | Topic                                 | Answer                                 | Verification                                              |
+| -------- | ------------------------------------- | -------------------------------------- | --------------------------------------------------------- |
+| 2024 Q31 | A² = A, A + B = I                     | **A, B, C**                            | 3,000 random idempotents: B² = B, AB = 0, BA = 0 all held |
+| 2024 Q32 | 3×3 matrix, three rows equal at x = a | **A, B**                               | see note below                                            |
+| 2024 Q33 | iZ² − Z̄ = 0, values of \|Z\|          | **A, B** (0 and 1)                     | numerical sweep found exactly {0, 1}                      |
+| 2024 Q34 | rectangular hyperbola                 | **A, D**                               | reasoning only — definition plus a = b                    |
+| 2024 Q35 | \[a×b, b×c, c×a\]                     | **C** (and D is also a true statement) | identity verified on 20,000 random triples                |
+
+### Q32 — the (x−a)² result, and why it is not obvious
+
+Write each row as rᵢ(x) = v + (x−a)uᵢ(x), which is forced by the three rows being
+equal to v at x = a. Expanding the determinant by multilinearity, any term keeping
+two or more copies of v has two equal rows and vanishes. The surviving terms carry
+at least two factors of (x−a). **Therefore (x−a)² always divides det(A)** — (B) is
+true — and (x−a)³ sometimes but not always does, so (C) is false. Since (x−a)²
+dividing implies (x−a) divides, (A) is _also_ a true statement, giving A and B.
+
+A careless solver marks (B) alone because it is the "interesting" one. This is a
+real, measured instance of the under-marking failure mode described above, and it
+was resolved by expanding symbolically rather than by choosing the tidier answer.
+
+### Q35 — a question with two defensible answers
+
+The value is [a b c]², so (C). But (D) — "0 if a, b, c are coplanar" — is also a
+true statement, because [a b c] = 0 in that case. Whether the examiner wanted (C)
+alone or both is not decidable from the paper. **This is exactly the `disputed`
+tier:** it must not be silently resolved by an agent's preference. It goes to
+review, and until then it cannot score.
+
+Two ambiguous items out of five in the hardest bucket is the sobering number. It is
+also the strongest argument for the tiering proposal: a system with only
+"verified / not verified" would either drop these questions silently or guess.
+
 ## Errata — 2024 Q43 (corrected 2026-11-02)
 
 The first pass recorded this answer as **(C)**. That was wrong, and it was wrong
@@ -145,6 +184,64 @@ from remembered conclusions would have shipped it.
 It also sets a firm rule for the derived-key work: **a stated answer must record
 how it was reached**, so a later checker can attack the reasoning rather than
 compare two letters.
+
+## Can third-party chatbots (Gemini, ChatGPT, etc.) be used to solve the papers?
+
+**Yes — as independent solvers, never as the authority.** The owner asked this
+directly. The answer is a qualified yes, and the qualifications are the whole
+point.
+
+### Where chatbots genuinely help
+
+A second model that has not seen the first model's answer is a real cross-check.
+It catches exactly the failure this record already contains one of: a confident,
+well-reasoned, wrong answer (2024 Q43, see Errata). Two independent wrong answers
+rarely coincide; one wrong answer repeated confidently looks like agreement.
+
+### Four things that make naive chatbot use dangerous
+
+1. **They must be given the page image, not the transcription.** The corpus is not
+   verbatim and 2024 Q6's text is visibly garbled. A model handed garbled text will
+   answer a question the examiner never set, fluently and with citations. This is
+   the single biggest risk and it is caused by _our_ input, not the model's ability.
+2. **Agreement is not verification.** Two chatbots frequently share training
+   lineage and share the same systematic errors — the same sign slip, the same
+   convention, the same misremembered constant. Correlated error survives an
+   agreement test that independent solvers would fail. Agreement raises confidence;
+   it does not establish correctness.
+3. **No audit trail, no reproducibility.** A chat answer is not a record. The same
+   question asked twice can produce different letters, and there is nothing to
+   attach to the key record. Provenance is required per the schema.
+4. **Figures are the usual failure point.** Asked about a diagram described in
+   text, a model will invent a plausible geometry — which has already happened
+   here once (Q43). Models given the actual image re-rendered at 300–500 dpi do
+   much better, which is why the render step is mandatory.
+
+### The protocol this proposes
+
+A question earns `derived-verified` only if all of the following hold:
+
+1. **Solved from the official page image**, not from `pyq-md/`, and the page number
+   is recorded.
+2. **The reasoning is written down**, per the Errata rule — a conclusion without a
+   derivation is not reviewable and counts as `derived-provisional`.
+3. **Machine-checked where the question permits it** (arithmetic, matrix identity,
+   algebraic identity, numerical search). This beats opinion regardless of how many
+   models were consulted.
+4. **Two independent solvers agree** where machine-checking is impossible. A human
+   and a model count as independent; two instances of the same model do not.
+5. **Disagreement ⇒ `disputed`, never a vote.** Q35 above is the worked example:
+   two defensible answers, neither provable, so it goes to review and stays
+   unscored.
+
+### A caution about who is verifying whom
+
+The agent writing this is one of the solvers, so its own recommendation to use a
+second, different model should be read as self-limiting rather than self-serving.
+Its advantage in this repository is not superior reasoning — it is that it can
+render the official PDF at 500 dpi, run verification code, and commit the record
+with provenance attached. A browser chatbot can produce the reasoning but leaves
+none of that behind.
 
 ## Cost
 
