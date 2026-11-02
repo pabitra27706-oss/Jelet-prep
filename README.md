@@ -3,6 +3,7 @@
 A working, mobile-friendly syllabus and previous-year paper library for West Bengal diploma students. Independent from WBJEEB.
 
 ## Current increment
+
 Phase 1 (library and reader) is merged and published. Phase 2 (persistent study
 workspace) is implemented on a review branch and **not yet deployed**.
 
@@ -19,7 +20,8 @@ workspace) is implemented on a review branch and **not yet deployed**.
   state, and honest "not saved" reporting when the browser refuses or is full.
 
 **Not yet included:** scored mocks, attempts, answer keys, timers, offline
-downloads, accounts or cloud sync. All transcriptions await official-original
+downloads, accounts or cloud sync. Scoring is blocked on verified answer keys,
+which do not exist yet (see the [content audit report](docs/audits/CONTENT-AUDIT-REPORT.md)). All transcriptions await official-original
 verification. The 2019 file has a year conflict; known missing question numbers
 are flagged. There is no mastery score, streak or rank estimate anywhere.
 
@@ -27,6 +29,7 @@ Study data contract (stores, limits, migrations, multi-tab and merge rules):
 [docs/STUDY-DATA.md](docs/STUDY-DATA.md).
 
 ## Run locally
+
 Requires Node 22.12+ and npm. Dependencies are locked.
 
 ```sh
@@ -35,10 +38,12 @@ npm run dev
 ```
 
 ## Validate and preview the production build
+
 ```sh
 npm run lint       # Prettier formatting checks
 npm run typecheck
-npm test           # content, rendering, persistence and backup unit tests
+npm test           # content, rendering, persistence, backup and audit unit tests
+npm run audit:check # fails if the committed content inventory is stale
 npm run build
 npm run preview -- --port 4173
 # In a second terminal, while the preview is running:
@@ -55,11 +60,13 @@ The browser test configuration uses an npm-packaged Linux Chromium to avoid rest
 Routes use hashes (for example `/#/papers/2024?q=2`), allowing refresh without SPA server fallback. Vite uses relative asset paths for static subpath hosting. There is no localhost browser-facing API, backend or public deployment configured. Production output is in `dist/`.
 
 ## Source and licence boundaries
+
 Existing raw Markdown and legacy HTML are preserved. The modern runtime bundles its own renderers/fonts; it does not fetch CDN scripts. Repo licence and exam-content publication rights remain owner/publication-review decisions; do not assume a third-party package licence covers question papers.
 
 Start with [documentation](docs/README.md), [roadmap](docs/ROADMAP.md), [phase 2 evidence](docs/phases/02-study-workspace.md), [local data contract](docs/STUDY-DATA.md), [phase 1 evidence](docs/phases/01-library-and-reader.md), [content inventory](docs/CONTENT-INVENTORY.md) and [dependencies](docs/DEPENDENCIES.md).
 
 ## Local data and privacy (short version)
+
 Bookmarks, notes, topic statuses, reading positions and reading history are kept
 in this browser's IndexedDB. There is no account, server copy, analytics or sync,
 so clearing site data or using another browser loses them — export a JSON backup

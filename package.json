@@ -9,8 +9,10 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "lint": "prettier --check src tests *.ts *.json index.html",
-    "typecheck": "tsc --noEmit"
+    "lint": "prettier --check src tests scripts *.ts *.json index.html",
+    "typecheck": "tsc --noEmit",
+    "audit:content": "node scripts/content-audit.mjs",
+    "audit:check": "node scripts/content-audit.mjs --check"
   },
   "dependencies": {
     "dompurify": "^3.4.17",
