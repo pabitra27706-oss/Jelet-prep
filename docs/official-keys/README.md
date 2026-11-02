@@ -106,3 +106,16 @@ candidate columns.
 With every paper on Set A, the key needs no translation: booklet question _n_ is
 board question _n_. The complete per-paper answer lists are in
 [`ALL-KEYS.md`](ALL-KEYS.md).
+
+## Wired into the app
+
+`src/keys.ts` loads all four files; `/keys` lists them and `/keys/<year>` renders
+the full sheet. The reader shows the board's answer under each question for
+**2024 and 2025**, the two years that have both a key and a bundled paper.
+
+2023 and 2026 are loaded but not displayed, for different reasons:
+
+- **2023** — the question paper is not in the app's corpus. Its PDF has a usable
+  text layer for prose but emits matrix contents in scrambled order, so importing
+  it is a page-by-page transcription job, not a mechanical conversion.
+- **2026** — no question booklet was supplied at all.

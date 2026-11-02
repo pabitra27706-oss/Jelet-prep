@@ -32,6 +32,7 @@ import {
 import { papers, filterPapers, archive, bulletin } from "./content";
 import { subjects } from "./syllabus-data";
 import Reader from "./Reader";
+import KeySheet from "./pages/KeySheet";
 import Saved from "./pages/Saved";
 import Progress from "./pages/Progress";
 import Settings from "./pages/Settings";
@@ -79,23 +80,26 @@ function App() {
       ? "Question library"
       : path.startsWith("/papers/")
         ? "Paper reader"
-        : path === "/syllabus"
-          ? "Syllabus explorer"
-          : path === "/saved"
-            ? "Saved & notes"
-            : path === "/progress"
-              ? "Your progress"
-              : path === "/settings"
-                ? "Backup & settings"
-                : path === "/about"
-                  ? "Sources & transparency"
-                  : "Your study space";
+        : path.startsWith("/keys")
+          ? "Answer keys"
+          : path === "/syllabus"
+            ? "Syllabus explorer"
+            : path === "/saved"
+              ? "Saved & notes"
+              : path === "/progress"
+                ? "Your progress"
+                : path === "/settings"
+                  ? "Backup & settings"
+                  : path === "/about"
+                    ? "Sources & transparency"
+                    : "Your study space";
   useEffect(() => {
     document.title = `${title} · JELET Prep`;
   }, [title]);
   const nav = [
     { to: "/", label: "Overview", icon: LayoutDashboard },
     { to: "/papers", label: "Question library", icon: Library },
+    { to: "/keys", label: "Answer keys", icon: ShieldCheck },
     { to: "/syllabus", label: "Syllabus explorer", icon: Layers },
     { to: "/saved", label: "Saved & notes", icon: Bookmark },
     { to: "/progress", label: "Your progress", icon: ChartNoAxesColumn },
@@ -225,6 +229,10 @@ function App() {
             <Home />
           ) : path === "/papers" ? (
             <PaperLibrary route={route} />
+          ) : path.startsWith("/keys") ? (
+            <KeySheet
+              year={path.split("/")[2] ? Number(path.split("/")[2]) : null}
+            />
           ) : path.startsWith("/papers/") ? (
             <Reader key={path} year={Number(path.split("/")[2])} />
           ) : path === "/syllabus" ? (
