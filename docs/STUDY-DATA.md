@@ -6,15 +6,15 @@ offline download exists.
 
 ## Ownership in code
 
-| Module | Responsibility |
-| --- | --- |
-| `src/content.ts` | Stable `CONTENT_VERSION`, paper/question/topic ID builders |
-| `src/study/records.ts` | Record types, limits, shared validators, note/topic/status rules |
-| `src/study/db.ts` | The only IndexedDB adapter: versioned migrations, transactional writes, error taxonomy |
-| `src/study/repository.ts` | The only write path used by features (bookmarks, positions, notes, topics, history, import, reset, meta) |
-| `src/study/backup.ts` | Pure backup envelope, validation, orphan detection, merge/replace planning |
-| `src/study/StudyProvider.tsx` | React state, honest save feedback, multi-tab refresh |
-| `src/pages/*` | Screens; they never touch IndexedDB directly |
+| Module                        | Responsibility                                                                                           |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `src/content.ts`              | Stable `CONTENT_VERSION`, paper/question/topic ID builders                                               |
+| `src/study/records.ts`        | Record types, limits, shared validators, note/topic/status rules                                         |
+| `src/study/db.ts`             | The only IndexedDB adapter: versioned migrations, transactional writes, error taxonomy                   |
+| `src/study/repository.ts`     | The only write path used by features (bookmarks, positions, notes, topics, history, import, reset, meta) |
+| `src/study/backup.ts`         | Pure backup envelope, validation, orphan detection, merge/replace planning                               |
+| `src/study/StudyProvider.tsx` | React state, honest save feedback, multi-tab refresh                                                     |
+| `src/pages/*`                 | Screens; they never touch IndexedDB directly                                                             |
 
 Invariant: a UI "Saved on this device" message is only shown after the IndexedDB
 transaction's `oncomplete` fired. A rejected write is reported as **Not saved**,
@@ -33,21 +33,21 @@ and the text the student typed stays in the editor.
 - Indexes: `notes.questionId`, `history.at`.
 - Migrations are an ordered map (`MIGRATIONS[n]` upgrades `n-1` → `n`). A future
   release appends a step and bumps `DB_VERSION`; existing records are preserved.
-  An older tab that meets a newer database reports *"study data from a newer
-  version"* instead of corrupting it (`VersionError`), and a tab whose database
+  An older tab that meets a newer database reports _"study data from a newer
+  version"_ instead of corrupting it (`VersionError`), and a tab whose database
   is being upgraded closes on `versionchange` so the upgrade is not blocked.
 
 ## Records and limits
 
 All timestamps are ISO-8601 UTC strings. All IDs are derived, not random.
 
-| Record | Content | Validated |
-| --- | --- | --- |
-| Bookmark | question ID, paper ID, question number, created | ID format, paper/question agreement, number 1–100 |
-| Position | paper ID, question number, updated | paper ID format, number 1–100 |
-| Note | note ID, question ID, paper ID, question number, plain text, created/updated | one note per question, text 1–2000 chars after trim, no empty notes |
-| Topic | topic ID, subject ID, title, status (`studying` \| `revised`), updated | topic ID format, status in the allowed set. Absence means "not started" |
-| History | entry ID, kind (`paper` \| `syllabus`), target, timestamp | entry ID matches its content; 60 most recent entries retained |
+| Record   | Content                                                                      | Validated                                                               |
+| -------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Bookmark | question ID, paper ID, question number, created                              | ID format, paper/question agreement, number 1–100                       |
+| Position | paper ID, question number, updated                                           | paper ID format, number 1–100                                           |
+| Note     | note ID, question ID, paper ID, question number, plain text, created/updated | one note per question, text 1–2000 chars after trim, no empty notes     |
+| Topic    | topic ID, subject ID, title, status (`studying` \| `revised`), updated       | topic ID format, status in the allowed set. Absence means "not started" |
+| History  | entry ID, kind (`paper` \| `syllabus`), target, timestamp                    | entry ID matches its content; 60 most recent entries retained           |
 
 No name, email, phone, roll number, rank card or device identifier is stored.
 Notes are never rendered as Markdown or HTML: they are plain text in a textarea
@@ -65,8 +65,8 @@ and then in a `white-space: pre-wrap` element.
 - Validation happens before the write and again inside the transaction for
   imports, so a foreign record shape can never be persisted.
 - Reads filter records through the same validators; anything that fails is
-  excluded from state and counted, so the progress screen can say *"N stored
-  record(s) were skipped"* instead of silently showing invented data.
+  excluded from state and counted, so the progress screen can say _"N stored
+  record(s) were skipped"_ instead of silently showing invented data.
 
 ## Multi-tab behaviour
 
@@ -77,7 +77,7 @@ and then in a `white-space: pre-wrap` element.
   baseline throws `NoteConflictError`: the UI keeps the local draft and asks the
   student to either load the other tab's version or deliberately keep their own.
   Nothing is overwritten implicitly.
-- Import merge re-reads current records *inside* the import transaction, so a
+- Import merge re-reads current records _inside_ the import transaction, so a
   concurrent tab cannot be overwritten with a stale preview.
 - Reading positions are last-write-wins by design (they are a place marker, not
   user prose); the newest `updatedAt` wins and the dashboard shows that paper.
@@ -91,7 +91,13 @@ and then in a `white-space: pre-wrap` element.
   "schemaVersion": 1,
   "exportedAt": "2026-11-02T10:00:00.000Z",
   "contentVersion": "2026-11-02.1",
-  "data": { "bookmarks": [], "positions": [], "notes": [], "topics": [], "history": [] }
+  "data": {
+    "bookmarks": [],
+    "positions": [],
+    "notes": [],
+    "topics": [],
+    "history": []
+  }
 }
 ```
 
@@ -112,7 +118,7 @@ Import rules:
    `createdAt`) wins; ties keep the local record. Re-importing the same file is
    idempotent because history keys include their timestamp.
 7. **Replace**: requires typing `REPLACE`; clears each store and writes the file
-   in the *same* transaction, so a failure leaves previous data intact. Before
+   in the _same_ transaction, so a failure leaves previous data intact. Before
    writing, the current export is stored under `meta/pre-replace-backup` so a
    safety copy can be downloaded afterwards.
 8. Orphaned references (paper removed, question number in a known gap, topic

@@ -12,7 +12,8 @@
     "lint": "prettier --check src tests scripts *.ts *.json index.html",
     "typecheck": "tsc --noEmit",
     "audit:content": "node scripts/content-audit.mjs",
-    "audit:check": "node scripts/content-audit.mjs --check"
+    "audit:check": "node scripts/content-audit.mjs --check",
+    "keys:check": "node scripts/key-audit.mjs"
   },
   "dependencies": {
     "dompurify": "^3.4.17",

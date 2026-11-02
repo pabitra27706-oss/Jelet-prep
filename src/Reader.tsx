@@ -19,6 +19,7 @@ import {
   papers,
   parsePaper,
 } from "./content";
+import { answerFor, formatAnswer, keyFor } from "./keys";
 import { LIMITS, type NoteRecord } from "./study/records";
 import { useStudy } from "./study/StudyProvider";
 import { Link, SourceLink, SaveStatus } from "./ui";
@@ -34,6 +35,7 @@ type NoteStatus =
 
 export default function Reader({ year }: { year: number }) {
   const paper = papers.find((p) => p.year === year);
+  const key = keyFor(year);
   const paperKey = toPaperId(year);
   const study = useStudy();
   const [data, setData] = useState<ReturnType<typeof parsePaper> | null>(null);
@@ -241,11 +243,22 @@ export default function Reader({ year }: { year: number }) {
           {paper.source === archive ? "Official archive" : "Official paper PDF"}
         </SourceLink>
       </div>
-      <div className="notice warning">
-        <AlertTriangle size={19} />
+      <div className={key?.mappedToBooklet ? "notice" : "notice warning"}>
+        {key?.mappedToBooklet ? (
+          <ShieldCheck size={19} />
+        ) : (
+          <AlertTriangle size={19} />
+        )}
         <p>
-          <strong>Unverified study transcription.</strong> {paper.note} No
-          verified answers or solutions are supplied.{" "}
+          <strong>
+            {key?.mappedToBooklet
+              ? "Official answer key included."
+              : "Unverified study transcription."}
+          </strong>{" "}
+          {paper.note}{" "}
+          {key?.mappedToBooklet
+            ? `The answer under each question is the board's final key (${key.documentRef}, ${key.documentDate}), transcribed from its notice. Questions the board voided are marked, not scored. The paper text itself is still a transcription — check the original PDF before trusting any wording.`
+            : "No verified answers or solutions are supplied."}{" "}
           {missing.length > 0 &&
             `Missing question numbers: ${missing.join(", ")}.`}
         </p>
@@ -386,6 +399,34 @@ export default function Reader({ year }: { year: number }) {
                     <Markdown text={question.text} />
                   </Suspense>
                 </div>
+                {(() => {
+                  const entry = answerFor(year, question.number);
+                  if (!entry) return null;
+                  return (
+                    <div
+                      className={
+                        "answer-panel" + (entry.voided ? " voided" : "")
+                      }
+                    >
+                      <div className="answer-label">
+                        {entry.voided
+                          ? "Question voided by the board"
+                          : "Official answer"}
+                      </div>
+                      <div
+                        className="answer-value"
+                        aria-label={`Official answer ${formatAnswer(entry)}`}
+                      >
+                        {formatAnswer(entry)}
+                      </div>
+                      <p className="answer-note">
+                        {entry.voided
+                          ? "The board withdrew this question: no option is correct and every candidate was awarded the marks."
+                          : `Final key of the West Bengal Joint Entrance Examinations Board (${key?.documentRef}). Options are given as printed in the booklet — set ${key?.set}, so booklet numbering matches the board's.`}
+                      </p>
+                    </div>
+                  );
+                })()}
                 <details className="note-panel" open={Boolean(storedNote)}>
                   <summary>
                     <StickyNote size={15} />
@@ -485,7 +526,9 @@ export default function Reader({ year }: { year: number }) {
                 <div className="reader-bottom">
                   <span>
                     <ShieldCheck size={15} />
-                    Read-only · Answer key not verified
+                    {key?.mappedToBooklet
+                      ? `Read-only · Official key (${key.documentRef})`
+                      : "Read-only · Answer key not verified"}
                   </span>
                   <div>
                     <button

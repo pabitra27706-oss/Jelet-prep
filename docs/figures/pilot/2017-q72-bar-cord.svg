@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 220" role="img" aria-labelledby="t d" width="340" height="220">
+  <!--
+    RECONSTRUCTED FIGURE — not official WBJEEB artwork.
+    Source: JELET-2017, Paper-I (Diploma Engg. & Tech.), booklet 80116361, page 14, Q72.
+    Redrawn from the official booklet on 2026-11-02 as original vector line art.
+    No pixel data from the official PDF is stored in this file.
+    Geometry note: the cord is drawn at exactly 30.0 degrees to the bar so that the
+    printed "30°" label is true to the drawing; the source sketch is not to scale.
+    See docs/decisions/ADR-0002-figure-reconstruction.md.
+  -->
+  <title id="t">Bar AB hinged to a vertical wall at A and held horizontal by a cord BC</title>
+  <desc id="d">A vertical hatched wall stands on the left. Bar AB runs horizontally from the wall at A
+    to its free end B. A cord runs from B up to a point C on the wall, making an angle of 30 degrees
+    with the bar at B.</desc>
+
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#1f2328" stroke-width="1.4" />
+    </pattern>
+  </defs>
+
+  <g fill="none" stroke="#1f2328" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- wall -->
+    <rect x="24" y="20" width="16" height="170" fill="url(#hatch)" stroke="#1f2328" stroke-width="2" />
+    <!-- bar AB -->
+    <rect x="40" y="179" width="260" height="8" fill="url(#hatch)" stroke="#1f2328" stroke-width="1.6" />
+    <!-- cord BC, exactly 30 degrees above the bar at B -->
+    <line x1="300" y1="183" x2="40" y2="33" />
+    <!-- hinge at A -->
+    <circle cx="40" cy="183" r="4" fill="#ffffff" />
+    <!-- angle arc at B between bar and cord -->
+    <path d="M 240 183 A 60 60 0 0 1 248 153" stroke-width="1.6" />
+  </g>
+
+  <g fill="#1f2328" font-family="system-ui, sans-serif" font-size="13">
+    <text x="52" y="172">A</text>
+    <text x="308" y="188">B</text>
+    <text x="228" y="169" font-size="12" text-anchor="middle">30°</text>
+  </g>
+</svg>
