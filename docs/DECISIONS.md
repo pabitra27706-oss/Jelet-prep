@@ -40,4 +40,18 @@ The original prompt left the SHA unspecified. This SHA was resolved during resea
 The owner's website requirement replaces Android/APK/Play milestones with working web previews, production build artifacts and browser tests. Existing repository/branch are retained. No Android package ID or new repository is required. No formal law waiver or longer-than-four-week budget has been approved.
 
 ## Approval boundaries
-Only documentation work is authorized in this step. Do not infer permission to implement, spend, add ads, deploy, release, open/merge a PR or change repository licensing. Commit/push were not requested. Stay on the assigned session branch and preserve existing work.
+Historical planning-stage boundary: only documentation work was authorized in that step. See the latest execution entry below for the current scope. Do not infer permission to implement, spend, add ads, deploy, release, open/merge a PR or change repository licensing. Commit/push were not requested. Stay on the assigned session branch and preserve existing work.
+
+## Phase 1 execution — 2026-11-02
+- O-07: Owner instructed “start phase 1”. This authorizes library/reader implementation on the assigned branch, not deployment or merging.
+- Agent adaptation: phase 0 was not completed. Minimal frontend/build/content inventory prerequisites were included to make phase 1 runnable; the remaining full source audit, formal design approval, licence selection and publication review are not marked complete. This is a documented sequencing deviation, not a claim the owner explicitly waived every prerequisite.
+- Reversible choices: React/TypeScript/Vite, plain CSS tokens rather than Tailwind, hash routes for refresh on static hosts, lazy-loaded paper chunks and sanitized Markdown with local KaTeX. See DEPENDENCIES.md for exact installed versions/licence/activity signals.
+- English-only first increment preserves supplied content without choosing or rejecting a future bilingual interface. No ads/payment/account/backend work was added. No four-week commitment was inferred.
+- Test-only npm-packaged Chromium works around blocked browser-CDN access; extracted shared libraries are temporary, not shipped in the website. Test launcher disables the package's single-process and insecure-web-security flags.
+- Theme preference is the only new persisted user setting. Bookmarks, attempts, notes and offline downloads are not implemented.
+- Design is presented in the actual working preview; token approval is pending owner review. No PR, commit, push, merge or public deployment requested in this step.
+
+## Phase 1 merge authorization — 2026-11-02
+- O-08: Owner instructed “merge it to main”, authorizing the Phase 1 commit, branch push, pull request and merge. This does not authorize public deployment or Phase 2.
+- Revalidated before merge: formatting, 18 unit tests, TypeScript/production build, 10 production-preview browser tests and whitespace checks passed locally. Remote CI is not configured.
+- Outstanding source-verification/publication gates remain; merge authorization is not recorded as blanket visual-token or content-accuracy approval.
