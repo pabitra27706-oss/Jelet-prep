@@ -1,6 +1,6 @@
 # Phase 1 — Complete library, syllabus and reading experience
 
-Status: PLANNED.
+Status: IMPLEMENTED FOR PREVIEW REVIEW — design approval and phase-0 audit closure pending.
 Dependencies: phase 0 complete; production design approved; content inventory available. Readable material may be explicitly incomplete/unverified.
 
 ## Outcome
@@ -43,3 +43,27 @@ A student can open the site, locate a real paper or syllabus topic, read it comf
 
 ## Tests and handover
 Content parity/numbering checks, rendering fixtures and browser flows for discovery/deep-link/error recovery. Capture representative screenshots for regression evidence, not as a substitute for functionality. Provide working preview, production build and a list of readable versus excluded content. Bookmarks and scoring are not falsely advertised before later phases.
+
+## Execution evidence — 2026-11-02
+### Shipped
+- `src/main.tsx`: real home, filtered paper library, async read-only reader with question index/previous-next/type controls, subject/topic syllabus search, source/privacy information and invalid-route recovery.
+- `src/content.ts`: seven-paper manifest, structural question parser, missing-number detection, topic extraction and filter logic. Specific source links retained from prior research; unestablished matches link to the archive.
+- `src/Markdown.tsx`: math protection before Markdown parsing, locally bundled KaTeX and DOMPurify sanitation; visible unsupported-equation fallback.
+- `src/style.css`: responsive production theme, light/dark mode, focus/skip navigation and reduced-motion handling.
+- `package.json`, lockfile, Vite/TypeScript/Vitest/Playwright config: reproducible local tooling. Hash routes refresh on static hosting without a server fallback.
+- Existing `pyq-index.html`, `pyq-md/` and `syllabus.md` preserved unchanged.
+
+### Actual checks
+- `npm run build`: passed (TypeScript check + production bundle). Vite reports harmless Lucide “use client” directive warnings; no SSR is used.
+- `npm run lint`: passed Prettier formatting check. This is formatting lint, not an ESLint semantic/security analysis.
+- `npm test`: 18 tests passed, covering corpus numbering parity, known gaps, topic extraction, filters, malicious markup removal, representative maths and all extracted question rendering.
+- `npm run test:e2e`: 10 tests passed against the production preview with npm-packaged Chromium. Includes search/filter URL persistence, deep-link refresh, question controls, syllabus search, 320px overflow, theme persistence, missing/invalid routes, load-error recovery, rapid navigation, local-only automatic runtime requests, screenshots and axe scans on five principal screens.
+- Accessibility scan found no WCAG A/AA violations in the tested light-theme states after contrast fixes. This is not a manual screen-reader audit or full conformance certification.
+- `npm audit --omit=dev`: zero known runtime vulnerabilities at check time; not a security guarantee.
+- Production preview: port 4173, bound to 0.0.0.0. Build output: `dist/` (ignored). Packaged artifact: `/home/user/jelet-prep-phase1.zip` (outside Git).
+
+### Remaining gates and limits
+Full line-by-line official content audit, final-key verification, rights/licence review, owner design/token approval, translations, manual assistive-technology audit and broader browser coverage remain open. Phase 0 is not falsely marked complete. No scoring, bookmarks, saved sessions, backend, analytics, ads or service worker exists. No public deployment or remote CI run occurred.
+
+### Next step
+Owner reviews the real site/design. Close prerequisite audit/design decisions before phase 2; do not silently begin persistence/practice work. Phase 2 remains separately authorized work.

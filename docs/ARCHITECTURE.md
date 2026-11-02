@@ -61,3 +61,6 @@ Runtime assets locally bundled; content and app builds versioned together. Use r
 
 ## Open architecture decisions to close in phase 0
 One maths renderer; dependency versions/licences; static host/routing strategy; supported browsers; content packaging; plain-text/Markdown rendering policy; IndexedDB adapter; cache tooling; multi-tab coordination; translation format if selected; exact performance budgets. Researchable choices are agent decisions with evidence, not repeated owner questions.
+
+## Implemented subset — 2026-11-02
+React + TypeScript + Vite, plain CSS (not Tailwind), hash routes, lazy raw-content chunks and lazy sanitized KaTeX renderer are installed. Exact package versions and licence/activity signals are in DEPENDENCIES.md. Current routes are overview, papers/library, paper reader, syllabus and about/sources. Future study/practice/download routes listed above do not exist yet. Theme alone uses localStorage; IndexedDB and service-worker adapters are deferred. The legacy files remain unchanged. Local tests/build pass; no remote CI or public deployment is claimed.

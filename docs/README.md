@@ -15,6 +15,10 @@ This folder plans a complete working JELET preparation website for West Bengal d
 9. [Detailed phase specifications](ROADMAP.md#detailed-phase-work-packages) — substantial work packages for all six phases.
 
 ## Current status
-Documentation created; no implementation phase has started. Creating these documents does not approve every proposed feature, dependency, schedule or deployment.
+Phase 1 is implemented for preview review; see its execution record. Full phase-0 audit/design approval remains open. No public deployment or later-phase implementation is implied.
 
 Detailed planned phase specifications now live in `phases/`; append actual execution evidence there only after implementation. Keep this documentation self-contained and update it alongside implementation.
+
+## Implementation evidence
+- [Content inventory](CONTENT-INVENTORY.md) — actual question-number coverage and source-file hashes.
+- [Dependency register](DEPENDENCIES.md) — installed versions, licence and registry activity metadata.

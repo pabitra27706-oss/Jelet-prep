@@ -39,3 +39,11 @@ Populate from implementation, not invented component names.
 
 ## Approval record
 No visual approval or token freeze has occurred. Language direction remains unconfirmed. No frontend dependencies have been installed.
+
+## Implemented production direction — 2026-11-02 (owner approval pending)
+- Warm neutral background `#f8f9f6`, white surfaces, dark green `#2c503e` actions, orange accent `#c87a47`, body `#263d33`, secondary text `#636e66`.
+- System sans-serif UI and locally bundled KaTeX fonts; no external web-font requests. CSS book illustration is decorative and hidden from assistive technology.
+- Sidebar at desktop widths, collapsible navigation below 650px; reader index stacks below 850px. Overflow tested at 320px on principal routes.
+- Real overview/library/reader/syllabus/source screens are available. Future practice/download/persistence screen states above are specifications, not shipped navigation.
+- Light/dark theme exists; light-theme axe scan passes on tested screens. Broader dark-state/manual screen-reader review is pending.
+- Tokens are not owner-frozen. Review the working preview before further visual rollout.

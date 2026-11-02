@@ -1,11 +1,11 @@
 # Website roadmap
 
-Status: DRAFT. Documentation is authorized; execution and product proposals await approval. No phase is complete. Four weeks is a proposed target, not an owner commitment. Every phase has a working web increment, not an APK.
+Status: Phase 1 implemented for preview review; full phase-0 audit/design approval remain open. Owner authorized phase 1 execution on 2026-11-02. Product proposals outside this increment remain unconfirmed. Four weeks is a proposed target, not an owner commitment. Every phase has a working web increment, not an APK.
 
 | Phase | Parts (2–4 each) | Done means | Status |
 | --- | --- | --- | --- |
-| 0 — Foundation and audit | A: source/completeness inventory; B: dependency/licence and architecture checks; C: build/test shell; D: production design foundations | Existing content preserved; gaps tracked; dependencies cleared; runnable shell and initial tests; design direction presented within real website and approved before broad UI rollout | Planned |
-| 1 — Library and reader | A: routes/home/library; B: real syllabus and paper reader with maths; C: source/stream/completeness labels and responsive theme | Students find/read actual content at mobile/desktop widths; refresh/deep links work; missing/loading/error states tested; working preview + production build artifact | Planned |
+| 0 — Foundation and audit | A: source/completeness inventory; B: dependency/licence and architecture checks; C: build/test shell; D: production design foundations | Existing content preserved; gaps tracked; dependencies cleared; runnable shell and initial tests; design direction presented within real website and approved before broad UI rollout | Partial: build/inventory done; audit/design gates open |
+| 1 — Library and reader | A: routes/home/library; B: real syllabus and paper reader with maths; C: source/stream/completeness labels and responsive theme | Students find/read actual content at mobile/desktop widths; refresh/deep links work; missing/loading/error states tested; working preview + production build artifact | Implemented; awaiting owner design review / prerequisite closure |
 | 2 — Study workspace | A: bookmarks/resume/notes; B: syllabus progress/history; C: validated export/import and reset | Data survives reload; import cannot silently destroy progress; storage failure recovery tested; preview demonstrates real persistent data | Planned |
 | 3 — Verified practice | A: reviewed question/key dataset; B: answer controls/timer/resume; C: scoring/results/revision | All scored questions have matched verified keys; unit tests cover category rules; complete verified papers alone enable full mocks; practice runs end to end in preview | Planned |
 | 4 — Offline and accessibility | A: content download/update management; B: offline and failure recovery; C: keyboard/screen-reader and responsive audit | Downloaded content opens after offline restart; un-downloaded content clearly unavailable; stale rules labelled; cache updates do not destroy progress; accessibility checks pass | Planned |
@@ -38,3 +38,6 @@ Accounts, cloud sync, backend, payments, ads, rankings, AI-generated solutions, 
 
 ## Phase handover
 For each phase create `phases/NN-name.md` with parts, changed files, source evidence, actual commands/results, preview behaviour, unresolved risks, decisions and next step. Update this roadmap and decision log. Do not mark phases complete based only on appearance. No fabricated CI URLs, test passes or deployment status.
+
+## Current evidence
+See phase 1 execution record, CONTENT-INVENTORY.md and DEPENDENCIES.md. No claim of completed official-paper authentication, complete phase 0, public deployment or green remote CI is made.

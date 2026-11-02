@@ -1,6 +1,6 @@
 # Pre-code readiness and execution contract
 
-Status: preparation only. Documentation expansion is authorized; application implementation is not.
+Status: phase 1 implementation authorized on 2026-11-02 and delivered for preview review. This checklist retains the original pre-code gates; see phase 1 evidence for current results.
 
 ## What “fully prepared” means
 Every major capability has a bounded work package, an owner for unresolved decisions, a data contract, failure behaviour, acceptance tests and an exit gate. It does not mean every research uncertainty is resolved or that coding will reveal no new issues.
@@ -58,4 +58,4 @@ These research tasks can be completed during approved phase 0; they must close b
 | Scope creep | Accounts, AI lessons, rankings requested mid-phase | Record change; reprice/approve before implementing |
 
 ## What is intentionally not ready yet
-No dependencies are installed, full dataset audit/key verification is unfinished, no design approval/token freeze exists, no CI/build/test results exist, no hosting is selected, no repository licence is chosen and no public deployment is authorized. These are visible tasks, not concealed completion claims.
+Dependencies and local build/test tooling are now installed; see DEPENDENCIES.md and phase 1 evidence for actual checks. Full dataset audit/key verification, owner design/token approval, remote CI, hosting selection and repository/content licence review remain open. No public deployment is authorized. These are visible tasks, not concealed completion claims.
