@@ -87,3 +87,22 @@ not a solving error.
 3. **The 2023 and 2026 set symbols were not readable** from the scanned booklets
    we hold, so the series for those papers is still to be confirmed before they
    are keyed against these tables.
+
+## Booklet series, determined rather than assumed
+
+The set symbol printed in our scanned booklets does not reliably match the
+notices' legend — the 2023 booklet prints a _hollow_ square, which is not any of
+the four legend symbols. Rather than guess, each paper's series was fixed
+empirically: solve several questions from the booklet pages, then test all four
+candidate columns.
+
+| Paper | Result  | Evidence                                                                                  |
+| ----- | ------- | ----------------------------------------------------------------------------------------- |
+| 2023  | Set A   | Q1–Q5 solved independently (D, D, C, A, A): 5/5 on column A, 1/5 on B, 3/5 on C, 0/5 on D |
+| 2024  | Set A   | the 19 derived pilot answers: 14/14 on the single-answer subset, 18/19 overall            |
+| 2025  | Set A   | Q7–Q9 solved independently (D, D, C): 3/3 on column A, 1/3 on B, 2/3 on C, 0/3 on D       |
+| 2026  | unknown | no booklet supplied                                                                       |
+
+With every paper on Set A, the key needs no translation: booklet question _n_ is
+board question _n_. The complete per-paper answer lists are in
+[`ALL-KEYS.md`](ALL-KEYS.md).

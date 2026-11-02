@@ -815,5 +815,13 @@
       "seriesD": 100,
       "answer": "B"
     }
-  ]
+  ],
+  "booklet": {
+    "mapping": "identity",
+    "set": "A",
+    "setSymbol": "letter A in the page header",
+    "sourceFile": "202512161802442791-1.pdf",
+    "bookletNumber": null,
+    "determination": "Solved Q7-D (A=-2), Q8-D (f(x)+f(1-x)=1), Q9-C (f(x)g(x)+C1) from the booklet pages: 3/3 match the Set-A column."
+  }
 }

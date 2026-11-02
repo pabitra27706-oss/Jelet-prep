@@ -74,7 +74,30 @@ for (const file of readdirSync(DIR)
       fail(`Q${r.q} answer "${a}" repeats a letter`);
   }
 
-  seen.push({ file, year: doc.year, ref: doc.documentRef, voided });
+  // Booklet mapping: when a booklet is held, record which set it is. Set A means
+  // the board's master ordering and our booklet ordering coincide, so the key can
+  // be handed to a student without translation. Any other set would need the
+  // B/C/D permutation applied, which this audit refuses to leave implicit.
+  const b = doc.booklet;
+  if (b) {
+    if (b.set && !/^[A-D]$/.test(b.set))
+      fail(`booklet.set "${b.set}" is not A-D`);
+    if (!b.sourceFile && b.set) fail("booklet records a set but no sourceFile");
+    if (b.set === "A" && b.mapping !== "identity") {
+      fail('booklet is Set A so mapping must be "identity"');
+    }
+    if (!b.set && b.mapping) fail("booklet has a mapping but no set");
+    if (!b.determination)
+      fail("booklet.set is recorded without evidence (determination)");
+  }
+
+  seen.push({
+    file,
+    year: doc.year,
+    ref: doc.documentRef,
+    voided,
+    set: b?.set ?? "none",
+  });
 }
 
 if (problems.length) {
@@ -87,7 +110,7 @@ if (problems.length) {
 
 for (const s of seen) {
   const v = s.voided.length ? `  voided: Q${s.voided.join(", Q")}` : "";
-  console.log(`ok  ${s.year}  ${s.ref}  (${s.file})${v}`);
+  console.log(`ok  ${s.year}  ${s.ref}  set ${s.set}  (${s.file})${v}`);
 }
 const total = seen.reduce((n, s) => n + s.voided.length, 0);
 console.log(`\nOfficial keys valid: ${seen.length} file(s), 100 entries each.`);

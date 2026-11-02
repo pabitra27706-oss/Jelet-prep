@@ -815,5 +815,13 @@
       "seriesD": 93,
       "answer": "B"
     }
-  ]
+  ],
+  "booklet": {
+    "mapping": "identity",
+    "set": "A",
+    "setSymbol": "hollow square printed on cover (glyph F0A4)",
+    "sourceFile": "2023111575-2.pdf",
+    "bookletNumber": null,
+    "determination": "Solved Q1-D, Q2-D, Q3-C, Q4-A, Q5-A from the booklet pages: 5/5 match the Set-A column. Set B fits 1/5, C 3/5, D 0/5."
+  }
 }

@@ -815,5 +815,13 @@
       "seriesD": 96,
       "answer": "D"
     }
-  ]
+  ],
+  "booklet": {
+    "mapping": null,
+    "set": null,
+    "setSymbol": null,
+    "sourceFile": null,
+    "bookletNumber": null,
+    "determination": "No 2026 question booklet held. The key is transcribed in master order only and cannot yet be mapped to a candidate booklet."
+  }
 }

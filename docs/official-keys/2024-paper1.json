@@ -815,5 +815,13 @@
       "seriesD": 93,
       "answer": "C"
     }
-  ]
+  ],
+  "booklet": {
+    "mapping": "identity",
+    "set": "A",
+    "setSymbol": "filled square (matches the notice legend)",
+    "sourceFile": "2024120234-1.pdf",
+    "bookletNumber": "4091010805",
+    "determination": "19 previously derived answers: 18/19 match the Set-A column (Q1-4, Q31-35, Q41-43, Q71-77). The only difference is Q35, where the board keys C,D and our pilot said C. Set B fits 3/19, C 4/19, D 3/19."
+  }
 }
