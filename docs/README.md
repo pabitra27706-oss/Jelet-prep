@@ -20,8 +20,8 @@ This folder plans a complete working JELET preparation website for West Bengal d
 
 Phase 1 (library and reader) is merged into `main` and published at
 https://pabitra27706-oss.github.io/Jelet-prep/ . Phase 2 (persistent study
-workspace) is implemented on the session review branch with local validation
-recorded in its execution record; it is not merged or deployed. Full phase-0
+workspace) is merged (PR #4) and deployed through the same workflow; its execution
+record has the checks, deployment record and remaining limits. Full phase-0
 audit (official-source verification, key availability, rights) and owner approval
 of the new workspace screens remain open. Nothing beyond Phase 2 is implied.
 

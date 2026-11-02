@@ -107,6 +107,7 @@ Historical planning-stage boundary: only documentation work was authorized in th
   downloads, accounts, cloud sync, analytics, ads, payments, PR/merge/deploy,
   manual screen-reader audit, cross-browser matrix, full source verification.
 
+<<<<<<< HEAD
 ## Phase 0 completion — 2026-11-02
 
 - O-12: Owner instructed “Ok complete phase 0.” This authorizes closing the
@@ -136,3 +137,24 @@ Historical planning-stage boundary: only documentation work was authorized in th
 - Product decisions avoided (not invented): no language/bilingual scope, no
   monetization, no publish/suppress decision about the eligibility summary, no
   decision that transcriptions are licensed.
+=======
+## Phase 2 merge and deployment authorization — 2026-11-02
+- O-11: Owner instructed “Ok merge it and run the workflow to update the
+  website.” This authorizes the Phase 2 commit, branch push, pull request,
+  merge into `main` and the resulting GitHub Pages deployment of Phase 2.
+- Remote CI before merge: PR #4 run 41398800142 — “Check and build” passed in
+  20s (formatting, 56 unit tests, TypeScript + production build); the Pages job
+  correctly reported `skipping` for a pull request.
+- Merge: PR #4 squashed? No — merged with `--merge` at 2026-11-02T06:16:29Z,
+  merge commit `e7b99b3`.
+- Deployment: `main` push run 41398880485 (“Check and build” 24s, “Publish to
+  GitHub Pages” 21s) succeeded. GitHub deployment 7485622720 has state
+  `success` for ref `main` at `e7b99b3` with environment URL
+  https://pabitra27706-oss.github.io/Jelet-prep/ . Pages remains configured with
+  `build_type: workflow` (GitHub Actions), no custom domain.
+- Verification limit: this sandbox can only reach GitHub/npm/PyPI hosts, so the
+  live `pages.github.io` URL could not be fetched from here. Live-state evidence
+  is the deployment status plus the green build/deploy jobs, not a page fetch.
+- This authorizes deployment of the labelled Phase 2 workspace only. Content
+  verification, answer keys, rights review and Phase 3 remain unauthorized work.
+>>>>>>> f63c9fa (Docs: record Phase 2 merge and Pages deployment)

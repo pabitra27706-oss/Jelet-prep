@@ -4,8 +4,13 @@ A working, mobile-friendly syllabus and previous-year paper library for West Ben
 
 ## Current increment
 
+<<<<<<< HEAD
 Phase 1 (library and reader) is merged and published. Phase 2 (persistent study
 workspace) is implemented on a review branch and **not yet deployed**.
+=======
+Phase 1 (library and reader) and Phase 2 (persistent study workspace) are merged
+into `main` and published.
+>>>>>>> f63c9fa (Docs: record Phase 2 merge and Pages deployment)
 
 - Seven paper transcriptions with honest source/completeness labels.
 - Year/keyword and historical/recent-format filtering, with URL-persisted filters.
