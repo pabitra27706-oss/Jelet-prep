@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import {
   BookOpen,
+  Bookmark,
   LayoutDashboard,
   Library,
   Layers,
@@ -17,24 +18,26 @@ import {
   ShieldCheck,
   FileText,
   GraduationCap,
-  ExternalLink,
   AlertTriangle,
   SlidersHorizontal,
   RotateCcw,
   Compass,
   Info,
+  ChartNoAxesColumn,
+  Settings as SettingsIcon,
+  Database,
+  Circle,
+  LoaderCircle,
 } from "lucide-react";
-import {
-  papers,
-  filterPapers,
-  loadPaper,
-  parsePaper,
-  parseSyllabus,
-  missingNumbers,
-  archive,
-  bulletin,
-} from "./content";
-import syllabus from "../syllabus.md?raw";
+import { papers, filterPapers, archive, bulletin } from "./content";
+import { subjects } from "./syllabus-data";
+import Reader from "./Reader";
+import Saved from "./pages/Saved";
+import Progress from "./pages/Progress";
+import Settings from "./pages/Settings";
+import { StudyProvider, useStudy } from "./study/StudyProvider";
+import { Badge, Link, PageHeading, SaveStatus, SourceLink } from "./ui";
+import type { TopicStatus } from "./study/records";
 import "./style.css";
 const Markdown = lazy(() => import("./Markdown"));
 function useRoute() {
@@ -45,46 +48,6 @@ function useRoute() {
     return () => removeEventListener("hashchange", change);
   }, []);
   return route;
-}
-function Link({
-  to,
-  children,
-  ...props
-}: React.AnchorHTMLAttributes<HTMLAnchorElement> & { to: string }) {
-  return (
-    <a href={"#" + to} {...props}>
-      {children}
-    </a>
-  );
-}
-function SourceLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="source-link"
-    >
-      {children}
-      <ExternalLink size={14} />
-      <span className="sr-only"> (opens in new tab)</span>
-    </a>
-  );
-}
-function Badge({
-  children,
-  tone = "green",
-}: {
-  children: React.ReactNode;
-  tone?: string;
-}) {
-  return <span className={"badge " + tone}>{children}</span>;
 }
 function App() {
   const route = useRoute(),
@@ -118,9 +81,15 @@ function App() {
         ? "Paper reader"
         : path === "/syllabus"
           ? "Syllabus explorer"
-          : path === "/about"
-            ? "Sources & transparency"
-            : "Your study space";
+          : path === "/saved"
+            ? "Saved & notes"
+            : path === "/progress"
+              ? "Your progress"
+              : path === "/settings"
+                ? "Backup & settings"
+                : path === "/about"
+                  ? "Sources & transparency"
+                  : "Your study space";
   useEffect(() => {
     document.title = `${title} · JELET Prep`;
   }, [title]);
@@ -128,6 +97,9 @@ function App() {
     { to: "/", label: "Overview", icon: LayoutDashboard },
     { to: "/papers", label: "Question library", icon: Library },
     { to: "/syllabus", label: "Syllabus explorer", icon: Layers },
+    { to: "/saved", label: "Saved & notes", icon: Bookmark },
+    { to: "/progress", label: "Your progress", icon: ChartNoAxesColumn },
+    { to: "/settings", label: "Backup & settings", icon: SettingsIcon },
   ];
   return (
     <>
@@ -162,25 +134,30 @@ function App() {
         <div className="nav-label">WORKSPACE</div>
         <nav aria-label="Main navigation">
           {nav.map(({ to, label, icon: Icon }) => (
-            <Link
-              key={to}
-              to={to}
-              className={
-                "nav-link " +
-                ((to === "/" ? path === "/" : path.startsWith(to))
-                  ? "active"
-                  : "")
-              }
-              aria-current={
-                (to === "/" ? path === "/" : path.startsWith(to))
-                  ? "page"
-                  : undefined
-              }
-            >
-              <Icon size={19} />
-              {label}
-              {to === "/papers" && <span className="nav-count">07</span>}
-            </Link>
+            <React.Fragment key={to}>
+              {to === "/saved" && (
+                <div className="nav-label nav-label-inline">YOUR STUDY</div>
+              )}
+              <Link
+                key={to}
+                to={to}
+                className={
+                  "nav-link " +
+                  ((to === "/" ? path === "/" : path.startsWith(to))
+                    ? "active"
+                    : "")
+                }
+                aria-current={
+                  (to === "/" ? path === "/" : path.startsWith(to))
+                    ? "page"
+                    : undefined
+                }
+              >
+                <Icon size={19} />
+                {label}
+                {to === "/papers" && <span className="nav-count">07</span>}
+              </Link>
+            </React.Fragment>
           ))}
         </nav>
         <div className="sidebar-note">
@@ -243,6 +220,7 @@ function App() {
           </div>
         </header>
         <main id="main-content" tabIndex={-1} ref={main}>
+          <StorageBanner />
           {path === "/" ? (
             <Home />
           ) : path === "/papers" ? (
@@ -251,6 +229,12 @@ function App() {
             <Reader key={path} year={Number(path.split("/")[2])} />
           ) : path === "/syllabus" ? (
             <Syllabus />
+          ) : path === "/saved" ? (
+            <Saved />
+          ) : path === "/progress" ? (
+            <Progress />
+          ) : path === "/settings" ? (
+            <Settings />
           ) : path === "/about" ? (
             <About />
           ) : (
@@ -278,6 +262,127 @@ function App() {
     </>
   );
 }
+function StorageBanner() {
+  const study = useStudy();
+  if (study.status !== "unavailable") return null;
+  return (
+    <div className="notice warning" role="alert">
+      <AlertTriangle size={19} />
+      <p>
+        <strong>This browser is blocking local storage.</strong>{" "}
+        {study.storageError?.message} Reading works, but bookmarks, notes,
+        progress and backups are unavailable in this session.{" "}
+        <Link to="/settings">See storage details</Link>.
+      </p>
+    </div>
+  );
+}
+
+function WorkspaceSummary() {
+  const study = useStudy();
+  const positions = [...study.snapshot.positions].sort((a, b) =>
+    b.updatedAt.localeCompare(a.updatedAt),
+  );
+  const latest = positions[0];
+  const latestPaper = latest
+    ? papers.find((paper) => `jelet-et-p1-${paper.year}` === latest.paperId)
+    : undefined;
+  const revised = study.snapshot.topics.filter(
+    (record) => record.status === "revised",
+  ).length;
+  const studying = study.snapshot.topics.filter(
+    (record) => record.status === "studying",
+  ).length;
+  const empty =
+    study.snapshot.bookmarks.length === 0 &&
+    study.snapshot.notes.length === 0 &&
+    study.snapshot.topics.length === 0;
+
+  return (
+    <section className="workspace-card" aria-labelledby="workspace-heading">
+      <div className="workspace-head">
+        <div>
+          <span className="eyebrow">YOUR STUDY WORKSPACE</span>
+          <h2 id="workspace-heading">Saved on this device</h2>
+        </div>
+        <Link to="/progress" className="text-link">
+          See progress <ArrowRight size={15} />
+        </Link>
+      </div>
+      {study.status === "loading" ? (
+        <p className="muted workspace-loading" role="status">
+          <LoaderCircle size={16} /> Loading your saved study data…
+        </p>
+      ) : study.status === "unavailable" ? (
+        <p className="muted">
+          Study data can’t be read because this browser is blocking local
+          storage. Nothing below is estimated.
+        </p>
+      ) : empty ? (
+        <div className="workspace-empty">
+          <Bookmark size={22} />
+          <p>
+            Nothing saved yet. Bookmark a question, write a note, or mark a
+            syllabus topic as studying — it will stay here after you reload.
+          </p>
+          <div className="empty-actions">
+            <Link to="/papers" className="button primary">
+              Browse papers
+            </Link>
+            <Link to="/syllabus" className="button secondary">
+              Open syllabus
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="workspace-stats">
+            <Link to="/saved" className="workspace-stat">
+              <Bookmark size={17} />
+              <strong>{study.snapshot.bookmarks.length}</strong>
+              <span>Bookmarks</span>
+            </Link>
+            <Link to="/saved" className="workspace-stat">
+              <FileText size={17} />
+              <strong>{study.snapshot.notes.length}</strong>
+              <span>Notes</span>
+            </Link>
+            <Link to="/progress" className="workspace-stat">
+              <Circle size={17} />
+              <strong>{studying}</strong>
+              <span>Studying</span>
+            </Link>
+            <Link to="/progress" className="workspace-stat">
+              <ShieldCheck size={17} />
+              <strong>{revised}</strong>
+              <span>Revised</span>
+            </Link>
+          </div>
+          {latestPaper && latest && (
+            <div className="resume-row">
+              <span>
+                <BookOpen size={16} /> Continue reading JELET {latestPaper.year}
+                , question {latest.questionNumber}
+              </span>
+              <Link
+                to={`/papers/${latestPaper.year}?q=${latest.questionNumber}`}
+                className="button secondary"
+              >
+                Resume <ChevronRight size={15} />
+              </Link>
+            </div>
+          )}
+          <p className="workspace-foot">
+            Stored in this browser only.{" "}
+            <Link to="/settings">Export a backup</Link> before clearing browser
+            data.
+          </p>
+        </>
+      )}
+    </section>
+  );
+}
+
 function Home() {
   return (
     <>
@@ -383,6 +488,7 @@ function Home() {
           detail="Verification status on every paper"
         />
       </div>
+      <WorkspaceSummary />
       <div className="section-heading">
         <div>
           <span className="eyebrow">FIND YOUR FOCUS</span>
@@ -625,240 +731,80 @@ function PaperLibrary({ route }: { route: string }) {
     </>
   );
 }
-function PageHeading({
-  eyebrow,
-  title,
-  description,
+function TopicStatusControl({
+  topic,
+  subject,
 }: {
-  eyebrow: string;
-  title: string;
-  description: string;
+  topic: { id: string; title: string };
+  subject: { id: string };
 }) {
+  const study = useStudy();
+  const stored = study.topicsById.get(topic.id);
+  const [state, setState] = useState<{
+    state: "idle" | "saving" | "saved" | "error";
+    message?: string;
+  }>({ state: "idle" });
+  const ready = study.status === "ready";
+
+  async function apply(status: TopicStatus | null) {
+    setState({ state: "saving" });
+    const outcome = status
+      ? await study.updateTopicStatus(
+          { topicId: topic.id, subjectId: subject.id, title: topic.title },
+          status,
+        )
+      : await study.resetTopicStatus(topic.id);
+    setState(
+      outcome.ok
+        ? { state: "saved" }
+        : { state: "error", message: outcome.error },
+    );
+  }
+
+  const options: { value: TopicStatus | null; label: string }[] = [
+    { value: null, label: "Not started" },
+    { value: "studying", label: "Studying" },
+    { value: "revised", label: "Revised" },
+  ];
   return (
-    <div className="page-heading">
-      <div className="eyebrow">{eyebrow}</div>
-      <h1>{title}</h1>
-      <p>{description}</p>
+    <div className="topic-status">
+      <span className="topic-status-label" id={`status-${topic.id}`}>
+        Your status
+      </span>
+      <div
+        className="status-options"
+        role="group"
+        aria-labelledby={`status-${topic.id}`}
+      >
+        {options.map((option) => {
+          const active = (stored?.status ?? null) === option.value;
+          return (
+            <button
+              key={option.label}
+              className={"status-option " + (active ? "active" : "")}
+              aria-pressed={active}
+              disabled={!ready || state.state === "saving"}
+              onClick={() => void apply(option.value)}
+            >
+              {option.label}
+            </button>
+          );
+        })}
+      </div>
+      <SaveStatus state={state.state} message={state.message} />
+      {!ready && study.status !== "loading" && (
+        <span className="note-meta">
+          Saving is unavailable in this browser.
+        </span>
+      )}
+      <span className="note-meta">Kept on this device only</span>
     </div>
   );
 }
-function Reader({ year }: { year: number }) {
-  const paper = papers.find((p) => p.year === year);
-  const [data, setData] = useState<ReturnType<typeof parsePaper> | null>(null);
-  const [error, setError] = useState("");
-  const [current, setCurrent] = useState<number | null>(null);
-  const [font, setFont] = useState(18);
-  const [qSearch, setQSearch] = useState("");
-  const article = useRef<HTMLElement>(null);
-  useEffect(() => {
-    let alive = true;
-    setError("");
-    setData(null);
-    if (!paper) return;
-    loadPaper(year)
-      .then((raw) => {
-        if (alive) {
-          const parsed = parsePaper(raw);
-          setData(parsed);
-          const q = Number(
-            new URLSearchParams(location.hash.split("?")[1]).get("q"),
-          );
-          setCurrent(
-            parsed.questions.some((x) => x.number === q)
-              ? q
-              : (parsed.questions[0]?.number ?? null),
-          );
-        }
-      })
-      .catch(() => {
-        if (alive)
-          setError("We couldn’t load this transcription. Please retry.");
-      });
-    return () => {
-      alive = false;
-    };
-  }, [year, paper]);
-  function choose(n: number) {
-    setCurrent(n);
-    history.replaceState(null, "", `#/papers/${year}?q=${n}`);
-    article.current?.scrollIntoView({ behavior: "instant", block: "start" });
-    article.current?.focus();
-  }
-  if (!paper)
-    return (
-      <div className="empty">
-        <FileText size={35} />
-        <h1>That paper is not in this collection.</h1>
-        <Link to="/papers" className="button primary">
-          Back to library
-        </Link>
-      </div>
-    );
-  const question = data?.questions.find((q) => q.number === current),
-    index = data?.questions.findIndex((q) => q.number === current) ?? 0;
-  const missing = data ? missingNumbers(data.questions) : paper.missing;
-  return (
-    <>
-      <div className="reader-breadcrumb">
-        <Link to="/papers">
-          <ChevronLeft size={15} />
-          Question library
-        </Link>
-        <span>/</span>
-        <span>{year}</span>
-      </div>
-      <div className="reader-title">
-        <div>
-          <div className="eyebrow">
-            ENGINEERING & TECHNOLOGY · {paper.era.toUpperCase()}
-          </div>
-          <h1>
-            JELET {year}
-            <span className="title-light"> / Question paper</span>
-          </h1>
-        </div>
-        <SourceLink href={paper.source}>
-          {paper.source === archive ? "Official archive" : "Official paper PDF"}
-        </SourceLink>
-      </div>
-      <div className="notice warning">
-        <AlertTriangle size={19} />
-        <p>
-          <strong>Unverified study transcription.</strong> {paper.note} No
-          verified answers or solutions are supplied.{" "}
-          {missing.length > 0 &&
-            `Missing question numbers: ${missing.join(", ")}.`}
-        </p>
-      </div>
-      {error ? (
-        <div className="empty" role="alert">
-          <AlertTriangle size={32} />
-          <h2>Something didn’t load.</h2>
-          <p>{error}</p>
-          <button className="button primary" onClick={() => location.reload()}>
-            Retry loading
-          </button>
-        </div>
-      ) : !data ? (
-        <div className="loading" role="status">
-          Loading question paper…
-        </div>
-      ) : (
-        <div className="reader-layout">
-          <aside className="question-nav">
-            <div className="question-nav-title">
-              <h2>Question index</h2>
-              <span>{data.questions.length} present</span>
-            </div>
-            <label className="search-field small">
-              <Search size={16} />
-              <input
-                aria-label="Find question number"
-                placeholder="Find a question…"
-                value={qSearch}
-                onChange={(e) => setQSearch(e.target.value)}
-              />
-            </label>
-            <div className="question-grid">
-              {data.questions
-                .filter((q) => !qSearch || String(q.number).includes(qSearch))
-                .map((q) => (
-                  <button
-                    key={q.number}
-                    aria-label={`Question ${q.number}`}
-                    aria-current={q.number === current ? "true" : undefined}
-                    className={q.number === current ? "selected" : ""}
-                    onClick={() => choose(q.number)}
-                  >
-                    {q.number}
-                  </button>
-                ))}
-            </div>
-            {!data.questions.some(
-              (q) => !qSearch || String(q.number).includes(qSearch),
-            ) && <p className="muted">No matching question.</p>}
-            <div className="index-foot">
-              <Info size={14} />
-              Numbers reflect the transcription, not verification.
-            </div>
-          </aside>
-          <article className="question-panel" ref={article} tabIndex={-1}>
-            <div className="question-toolbar">
-              <span>
-                QUESTION {current}{" "}
-                <span className="muted">OF 100 EXPECTED</span>
-              </span>
-              <div className="font-controls" aria-label="Reading size">
-                <button
-                  aria-label="Decrease font size"
-                  disabled={font <= 16}
-                  onClick={() => setFont((f) => f - 2)}
-                >
-                  A−
-                </button>
-                <button
-                  aria-label="Increase font size"
-                  disabled={font >= 24}
-                  onClick={() => setFont((f) => f + 2)}
-                >
-                  A+
-                </button>
-              </div>
-            </div>
-            {question ? (
-              <>
-                <div className="question-section">{question.section}</div>
-                {question.warning && (
-                  <div className="inline-warning">
-                    <AlertTriangle size={16} />
-                    This question references image-based or missing content.
-                    Consult the original PDF.
-                  </div>
-                )}
-                <div className="question-text" style={{ fontSize: font }}>
-                  <Suspense
-                    fallback={<p role="status">Loading maths renderer…</p>}
-                  >
-                    <Markdown text={question.text} />
-                  </Suspense>
-                </div>
-                <div className="reader-bottom">
-                  <span>
-                    <ShieldCheck size={15} />
-                    Read-only · Answer key not verified
-                  </span>
-                  <div>
-                    <button
-                      className="button secondary"
-                      disabled={index <= 0}
-                      onClick={() => choose(data.questions[index - 1].number)}
-                    >
-                      <ChevronLeft size={16} />
-                      Previous
-                    </button>
-                    <button
-                      className="button primary"
-                      disabled={index >= data.questions.length - 1}
-                      onClick={() => choose(data.questions[index + 1].number)}
-                    >
-                      Next question
-                      <ChevronRight size={16} />
-                    </button>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <p>No readable questions were found.</p>
-            )}
-          </article>
-        </div>
-      )}
-    </>
-  );
-}
-const subjects = parseSyllabus(syllabus);
+
 function Syllabus() {
   const route = useRoute();
+  const study = useStudy();
   const rawIndex = Number(
     new URLSearchParams(route.split("?")[1]).get("subject") || 0,
   );
@@ -917,22 +863,31 @@ function Syllabus() {
       </div>
       <div className="topic-list">
         {topics.length ? (
-          topics.map((t) => (
-            <details key={t.title} className="topic">
-              <summary>
-                <span className="topic-number">
-                  {String(subject.topics.indexOf(t) + 1).padStart(2, "0")}
-                </span>
-                <span>{t.title}</span>
-                <span className="topic-plus">+</span>
-              </summary>
-              <div className="topic-body">
-                <Suspense fallback={<p>Loading…</p>}>
-                  <Markdown text={t.body} />
-                </Suspense>
-              </div>
-            </details>
-          ))
+          topics.map((t) => {
+            const status = study.topicsById.get(t.id)?.status;
+            return (
+              <details key={t.id} className="topic">
+                <summary>
+                  <span className="topic-number">
+                    {String(subject.topics.indexOf(t) + 1).padStart(2, "0")}
+                  </span>
+                  <span>{t.title}</span>
+                  {status && (
+                    <span className={"topic-status-chip " + status}>
+                      {status === "studying" ? "Studying" : "Revised"}
+                    </span>
+                  )}
+                  <span className="topic-plus">+</span>
+                </summary>
+                <div className="topic-body">
+                  <Suspense fallback={<p>Loading…</p>}>
+                    <Markdown text={t.body} />
+                  </Suspense>
+                  <TopicStatusControl topic={t} subject={subject} />
+                </div>
+              </details>
+            );
+          })
         ) : (
           <div className="empty">
             <Search />
@@ -1018,10 +973,13 @@ function About() {
           <BookOpen size={26} />
           <h2>Privacy & limitations</h2>
           <p>
-            No accounts, advertising or analytics have been added. Theme
-            preference is saved locally when browser storage is available. This
-            release does not save study progress and does not promise offline
-            availability.
+            No accounts, advertising or analytics have been added. Bookmarks,
+            notes, topic statuses, reading positions and reading history are
+            stored in this browser only — there is no server copy and no
+            cross-device sync. Theme preference is stored separately. You can
+            export, restore or clear study data on the{" "}
+            <Link to="/settings">backup &amp; settings</Link> page. Offline
+            downloads are still not promised.
           </p>
           <p>
             Opening an external source contacts that website. Content rights and
@@ -1038,6 +996,8 @@ function About() {
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <StudyProvider>
+      <App />
+    </StudyProvider>
   </React.StrictMode>,
 );

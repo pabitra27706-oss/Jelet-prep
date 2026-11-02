@@ -16,6 +16,8 @@ Checked 2026-11-02 via installed package manifests and npm registry metadata. Re
 | [@types/katex](https://www.npmjs.com/package/@types/katex) | 0.16.8 | MIT | 2026-10-04T08:42:51.326Z | Development/test |
 | [@types/react](https://www.npmjs.com/package/@types/react) | 19.3.0 | MIT | 2026-10-04T09:18:58.831Z | Development/test |
 | [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) | 19.3.0 | MIT | 2026-10-04T09:19:01.470Z | Development/test |
+| [fake-indexeddb](https://www.npmjs.com/package/fake-indexeddb) | 6.2.7 | Apache-2.0 | 2026-10-30T02:39:48.488Z | Development/test |
+| [@types/node](https://www.npmjs.com/package/@types/node) | 24.19.2 | MIT | 2026-10-28T18:36:37.419Z | Development/test |
 | [jsdom](https://www.npmjs.com/package/jsdom) | 30.1.3 | MIT | 2026-10-15T09:24:39.281Z | Development/test |
 | [prettier](https://www.npmjs.com/package/prettier) | 3.9.10 | MIT | 2026-10-10T08:35:28.619Z | Development/test |
 | [typescript](https://www.npmjs.com/package/typescript) | 7.0.2 | Apache-2.0 | 2026-11-01T08:05:41.448Z | Development/test |
@@ -25,7 +27,16 @@ Checked 2026-11-02 via installed package manifests and npm registry metadata. Re
 ## Reuse decisions
 - DEPEND: React/React DOM for the real app; Vite/TypeScript for builds; Lucide for one consistent icon set.
 - DEPEND: marked + DOMPurify for sanitized repository Markdown; KaTeX for locally bundled maths/fonts. Corpus rendering tests exercise all extracted questions; unsupported syntax remains a visible fallback, not a silent correction.
-- STUDY/DEFER: IndexedDB adapter and service-worker tooling belong to later phases. No ads/billing SDK.
+- DEPEND (Phase 2, dev-only): `fake-indexeddb` runs the real IndexedDB adapter
+  and migrations in Node so persistence tests do not need a browser; `@types/node`
+  supplies the `node:crypto` types used by the corpus-fingerprint test. Neither is
+  shipped in the website bundle.
+- ADAPT (Phase 2): the local study workspace uses the browser's IndexedDB
+  directly through a small in-repo adapter (`src/study/db.ts`) instead of adding
+  `idb`, Dexie or a similar runtime wrapper. Fewer runtime dependencies, explicit
+  migrations and no hidden schema layer. Contract: `docs/STUDY-DATA.md`.
+- STUDY/DEFER: service-worker/offline tooling still belongs to Phase 4. No
+  ads/billing SDK.
 - ADAPT: existing Markdown is preserved verbatim on disk; runtime parsing splits question entries and removes editorial end matter. Raw files and older HTML reader are not deleted.
 - BUILD: thin routing, corpus parser, metadata filters and accessible production layouts; no external UI template.
 

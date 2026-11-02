@@ -11,14 +11,23 @@ This folder plans a complete working JELET preparation website for West Bengal d
 6. [QUALITY.md](QUALITY.md) — testing, accessibility, privacy and release gates.
 
 7. [ARCHITECTURE.md](ARCHITECTURE.md) — layers, routes, data flows and technical decision backlog.
-8. [PRE-CODE-READINESS.md](PRE-CODE-READINESS.md) — approval gates, risk register and start/exit checklists.
-9. [Detailed phase specifications](ROADMAP.md#detailed-phase-work-packages) — substantial work packages for all six phases.
+8. [STUDY-DATA.md](STUDY-DATA.md) — implemented local study-data contract (IndexedDB stores, validation, migrations, multi-tab, backup/import, reset).
+9. [PRE-CODE-READINESS.md](PRE-CODE-READINESS.md) — approval gates, risk register and start/exit checklists.
+10. [Detailed phase specifications](ROADMAP.md#detailed-phase-work-packages) — substantial work packages for all six phases.
 
 ## Current status
-Phase 1 is implemented for preview review; see its execution record. Full phase-0 audit/design approval remains open. No public deployment or later-phase implementation is implied.
+Phase 1 (library and reader) is merged into `main` and published at
+https://pabitra27706-oss.github.io/Jelet-prep/ . Phase 2 (persistent study
+workspace) is implemented on the session review branch with local validation
+recorded in its execution record; it is not merged or deployed. Full phase-0
+audit (official-source verification, key availability, rights) and owner approval
+of the new workspace screens remain open. Nothing beyond Phase 2 is implied.
 
 Detailed planned phase specifications now live in `phases/`; append actual execution evidence there only after implementation. Keep this documentation self-contained and update it alongside implementation.
 
 ## Implementation evidence
+- [Phase 1 evidence](phases/01-library-and-reader.md) — library, reader, syllabus, checks.
+- [Phase 2 evidence](phases/02-study-workspace.md) — persistence, backup/import, tests, limits.
+- [Study data contract](STUDY-DATA.md) — schema v1, limits, merge rules, multi-tab policy.
 - [Content inventory](CONTENT-INVENTORY.md) — actual question-number coverage and source-file hashes.
 - [Dependency register](DEPENDENCIES.md) — installed versions, licence and registry activity metadata.
