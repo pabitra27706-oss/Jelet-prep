@@ -292,3 +292,32 @@ Not 2024 or 2025. Reasoning:
 
 **Not made.** This ADR stays `PROPOSED` until the owner accepts or rejects it.
 Until then Phase 3 remains blocked and no key of any tier exists in the repository.
+
+## Validation against the official 2024 key (2026-11-02)
+
+WBJEEB final answer-key notices for 2023–2026 were obtained (see
+`docs/official-keys/`). 2022 has none, so the 2022 key remains derived — but 2024
+lets the derivation method be measured against the board directly.
+
+Our 2024 Paper-I booklet carries the ■ symbol, i.e. Set A, which maps one-to-one
+to the board's master ordering. Nineteen answers derived from page images in the
+two pilot batches were compared:
+
+**18 of 19 agree with the official key.** The five Category-II multi-answer items
+(Q31–Q35) and all seven arithmetic items (Q71–Q77) are exact.
+
+The one difference is **Q35: derived `C`, official `C, D`** — the item this ADR
+already recorded as having two defensible answers, because (D) "zero if a, b, c
+are coplanar" is also true. The board marked both.
+
+Two conclusions:
+
+1. **The method is sound on what it was tested on** — text-and-arithmetic items and
+   multi-answer option adjudication. This sample was deliberately chosen to avoid
+   figure-dependent questions, so it still says nothing about that tail.
+2. **The "one or more correct" trap is real and measurable.** The single error is a
+   missed second option, exactly the failure mode predicted above.
+
+The official notices also show the board **voids 2–4% of its own questions** every
+year (10 across the four papers, marked `W`). A derived key that reports a handful
+of defective items is therefore behaving correctly, not falling short.

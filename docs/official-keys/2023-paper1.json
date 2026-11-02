@@ -1,0 +1,819 @@
+{
+  "year": 2023,
+  "paper": "Paper-I",
+  "tier": "official",
+  "documentRef": "JEEB/Reg-267/23",
+  "documentDate": "2023-08-03",
+  "sourceTable": "Engg tech & B.Sc",
+  "provenance": "WBJEEB notice 'JELET-2023, Final Answer Keys' (set symbols; block 1 of 2)",
+  "hostedBy": "aglasem.com re-host of the board notice",
+  "setSymbols": {
+    "A": "see notice",
+    "B": "see notice",
+    "C": "see notice",
+    "D": "see notice"
+  },
+  "tableSemantics": "Column A is the master ordering 1-100. Columns B,C,D give the number the same question carries in those series. One answer letter applies to the question in every series (option order is not shuffled; only question order is).",
+  "entries": [
+    {
+      "q": 1,
+      "seriesA": 1,
+      "seriesB": 30,
+      "seriesC": 17,
+      "seriesD": 9,
+      "answer": "D"
+    },
+    {
+      "q": 2,
+      "seriesA": 2,
+      "seriesB": 26,
+      "seriesC": 18,
+      "seriesD": 10,
+      "answer": "D"
+    },
+    {
+      "q": 3,
+      "seriesA": 3,
+      "seriesB": 27,
+      "seriesC": 14,
+      "seriesD": 11,
+      "answer": "C"
+    },
+    {
+      "q": 4,
+      "seriesA": 4,
+      "seriesB": 28,
+      "seriesC": 15,
+      "seriesD": 7,
+      "answer": "A"
+    },
+    {
+      "q": 5,
+      "seriesA": 5,
+      "seriesB": 29,
+      "seriesC": 16,
+      "seriesD": 8,
+      "answer": "A"
+    },
+    {
+      "q": 6,
+      "seriesA": 6,
+      "seriesB": 6,
+      "seriesC": 23,
+      "seriesD": 15,
+      "answer": "W"
+    },
+    {
+      "q": 7,
+      "seriesA": 7,
+      "seriesB": 1,
+      "seriesC": 24,
+      "seriesD": 16,
+      "answer": "A"
+    },
+    {
+      "q": 8,
+      "seriesA": 8,
+      "seriesB": 2,
+      "seriesC": 19,
+      "seriesD": 17,
+      "answer": "D"
+    },
+    {
+      "q": 9,
+      "seriesA": 9,
+      "seriesB": 3,
+      "seriesC": 20,
+      "seriesD": 12,
+      "answer": "D"
+    },
+    {
+      "q": 10,
+      "seriesA": 10,
+      "seriesB": 4,
+      "seriesC": 21,
+      "seriesD": 13,
+      "answer": "C"
+    },
+    {
+      "q": 11,
+      "seriesA": 11,
+      "seriesB": 5,
+      "seriesC": 22,
+      "seriesD": 14,
+      "answer": "B"
+    },
+    {
+      "q": 12,
+      "seriesA": 12,
+      "seriesB": 12,
+      "seriesC": 29,
+      "seriesD": 21,
+      "answer": "B"
+    },
+    {
+      "q": 13,
+      "seriesA": 13,
+      "seriesB": 7,
+      "seriesC": 30,
+      "seriesD": 22,
+      "answer": "D"
+    },
+    {
+      "q": 14,
+      "seriesA": 14,
+      "seriesB": 8,
+      "seriesC": 25,
+      "seriesD": 23,
+      "answer": "C"
+    },
+    {
+      "q": 15,
+      "seriesA": 15,
+      "seriesB": 9,
+      "seriesC": 26,
+      "seriesD": 18,
+      "answer": "A"
+    },
+    {
+      "q": 16,
+      "seriesA": 16,
+      "seriesB": 10,
+      "seriesC": 27,
+      "seriesD": 19,
+      "answer": "B"
+    },
+    {
+      "q": 17,
+      "seriesA": 17,
+      "seriesB": 11,
+      "seriesC": 28,
+      "seriesD": 20,
+      "answer": "D"
+    },
+    {
+      "q": 18,
+      "seriesA": 18,
+      "seriesB": 19,
+      "seriesC": 6,
+      "seriesD": 28,
+      "answer": "C"
+    },
+    {
+      "q": 19,
+      "seriesA": 19,
+      "seriesB": 13,
+      "seriesC": 7,
+      "seriesD": 29,
+      "answer": "A"
+    },
+    {
+      "q": 20,
+      "seriesA": 20,
+      "seriesB": 14,
+      "seriesC": 1,
+      "seriesD": 30,
+      "answer": "A"
+    },
+    {
+      "q": 21,
+      "seriesA": 21,
+      "seriesB": 15,
+      "seriesC": 2,
+      "seriesD": 24,
+      "answer": "B"
+    },
+    {
+      "q": 22,
+      "seriesA": 22,
+      "seriesB": 16,
+      "seriesC": 3,
+      "seriesD": 25,
+      "answer": "C"
+    },
+    {
+      "q": 23,
+      "seriesA": 23,
+      "seriesB": 17,
+      "seriesC": 4,
+      "seriesD": 26,
+      "answer": "A"
+    },
+    {
+      "q": 24,
+      "seriesA": 24,
+      "seriesB": 18,
+      "seriesC": 5,
+      "seriesD": 27,
+      "answer": "A"
+    },
+    {
+      "q": 25,
+      "seriesA": 25,
+      "seriesB": 25,
+      "seriesC": 12,
+      "seriesD": 4,
+      "answer": "D"
+    },
+    {
+      "q": 26,
+      "seriesA": 26,
+      "seriesB": 20,
+      "seriesC": 13,
+      "seriesD": 5,
+      "answer": "C"
+    },
+    {
+      "q": 27,
+      "seriesA": 27,
+      "seriesB": 21,
+      "seriesC": 8,
+      "seriesD": 6,
+      "answer": "D"
+    },
+    {
+      "q": 28,
+      "seriesA": 28,
+      "seriesB": 22,
+      "seriesC": 9,
+      "seriesD": 1,
+      "answer": "A"
+    },
+    {
+      "q": 29,
+      "seriesA": 29,
+      "seriesB": 23,
+      "seriesC": 10,
+      "seriesD": 2,
+      "answer": "B"
+    },
+    {
+      "q": 30,
+      "seriesA": 30,
+      "seriesB": 24,
+      "seriesC": 11,
+      "seriesD": 3,
+      "answer": "A"
+    },
+    {
+      "q": 31,
+      "seriesA": 31,
+      "seriesB": 39,
+      "seriesC": 36,
+      "seriesD": 34,
+      "answer": "AC"
+    },
+    {
+      "q": 32,
+      "seriesA": 32,
+      "seriesB": 40,
+      "seriesC": 37,
+      "seriesD": 35,
+      "answer": "BD"
+    },
+    {
+      "q": 33,
+      "seriesA": 33,
+      "seriesB": 31,
+      "seriesC": 38,
+      "seriesD": 36,
+      "answer": "A"
+    },
+    {
+      "q": 34,
+      "seriesA": 34,
+      "seriesB": 32,
+      "seriesC": 39,
+      "seriesD": 37,
+      "answer": "D"
+    },
+    {
+      "q": 35,
+      "seriesA": 35,
+      "seriesB": 33,
+      "seriesC": 40,
+      "seriesD": 38,
+      "answer": "B"
+    },
+    {
+      "q": 36,
+      "seriesA": 36,
+      "seriesB": 34,
+      "seriesC": 31,
+      "seriesD": 39,
+      "answer": "AC"
+    },
+    {
+      "q": 37,
+      "seriesA": 37,
+      "seriesB": 35,
+      "seriesC": 32,
+      "seriesD": 40,
+      "answer": "BC"
+    },
+    {
+      "q": 38,
+      "seriesA": 38,
+      "seriesB": 36,
+      "seriesC": 33,
+      "seriesD": 31,
+      "answer": "BD"
+    },
+    {
+      "q": 39,
+      "seriesA": 39,
+      "seriesB": 37,
+      "seriesC": 34,
+      "seriesD": 32,
+      "answer": "BC"
+    },
+    {
+      "q": 40,
+      "seriesA": 40,
+      "seriesB": 38,
+      "seriesC": 35,
+      "seriesD": 33,
+      "answer": "ACD"
+    },
+    {
+      "q": 41,
+      "seriesA": 41,
+      "seriesB": 65,
+      "seriesC": 56,
+      "seriesD": 48,
+      "answer": "A"
+    },
+    {
+      "q": 42,
+      "seriesA": 42,
+      "seriesB": 61,
+      "seriesC": 57,
+      "seriesD": 49,
+      "answer": "D"
+    },
+    {
+      "q": 43,
+      "seriesA": 43,
+      "seriesB": 62,
+      "seriesC": 53,
+      "seriesD": 50,
+      "answer": "B"
+    },
+    {
+      "q": 44,
+      "seriesA": 44,
+      "seriesB": 63,
+      "seriesC": 54,
+      "seriesD": 46,
+      "answer": "C"
+    },
+    {
+      "q": 45,
+      "seriesA": 45,
+      "seriesB": 64,
+      "seriesC": 55,
+      "seriesD": 47,
+      "answer": "B"
+    },
+    {
+      "q": 46,
+      "seriesA": 46,
+      "seriesB": 44,
+      "seriesC": 60,
+      "seriesD": 52,
+      "answer": "W"
+    },
+    {
+      "q": 47,
+      "seriesA": 47,
+      "seriesB": 41,
+      "seriesC": 61,
+      "seriesD": 53,
+      "answer": "B"
+    },
+    {
+      "q": 48,
+      "seriesA": 48,
+      "seriesB": 42,
+      "seriesC": 58,
+      "seriesD": 54,
+      "answer": "B"
+    },
+    {
+      "q": 49,
+      "seriesA": 49,
+      "seriesB": 43,
+      "seriesC": 59,
+      "seriesD": 51,
+      "answer": "B"
+    },
+    {
+      "q": 50,
+      "seriesA": 50,
+      "seriesB": 48,
+      "seriesC": 64,
+      "seriesD": 56,
+      "answer": "A"
+    },
+    {
+      "q": 51,
+      "seriesA": 51,
+      "seriesB": 45,
+      "seriesC": 65,
+      "seriesD": 57,
+      "answer": "B"
+    },
+    {
+      "q": 52,
+      "seriesA": 52,
+      "seriesB": 46,
+      "seriesC": 62,
+      "seriesD": 58,
+      "answer": "D"
+    },
+    {
+      "q": 53,
+      "seriesA": 53,
+      "seriesB": 47,
+      "seriesC": 63,
+      "seriesD": 55,
+      "answer": "B"
+    },
+    {
+      "q": 54,
+      "seriesA": 54,
+      "seriesB": 52,
+      "seriesC": 43,
+      "seriesD": 60,
+      "answer": "D"
+    },
+    {
+      "q": 55,
+      "seriesA": 55,
+      "seriesB": 49,
+      "seriesC": 44,
+      "seriesD": 61,
+      "answer": "B"
+    },
+    {
+      "q": 56,
+      "seriesA": 56,
+      "seriesB": 50,
+      "seriesC": 41,
+      "seriesD": 62,
+      "answer": "C"
+    },
+    {
+      "q": 57,
+      "seriesA": 57,
+      "seriesB": 51,
+      "seriesC": 42,
+      "seriesD": 59,
+      "answer": "D"
+    },
+    {
+      "q": 58,
+      "seriesA": 58,
+      "seriesB": 55,
+      "seriesC": 46,
+      "seriesD": 63,
+      "answer": "A"
+    },
+    {
+      "q": 59,
+      "seriesA": 59,
+      "seriesB": 53,
+      "seriesC": 47,
+      "seriesD": 64,
+      "answer": "B"
+    },
+    {
+      "q": 60,
+      "seriesA": 60,
+      "seriesB": 54,
+      "seriesC": 45,
+      "seriesD": 65,
+      "answer": "A"
+    },
+    {
+      "q": 61,
+      "seriesA": 61,
+      "seriesB": 60,
+      "seriesC": 51,
+      "seriesD": 43,
+      "answer": "D"
+    },
+    {
+      "q": 62,
+      "seriesA": 62,
+      "seriesB": 56,
+      "seriesC": 52,
+      "seriesD": 44,
+      "answer": "A"
+    },
+    {
+      "q": 63,
+      "seriesA": 63,
+      "seriesB": 57,
+      "seriesC": 48,
+      "seriesD": 45,
+      "answer": "A"
+    },
+    {
+      "q": 64,
+      "seriesA": 64,
+      "seriesB": 58,
+      "seriesC": 49,
+      "seriesD": 41,
+      "answer": "D"
+    },
+    {
+      "q": 65,
+      "seriesA": 65,
+      "seriesB": 59,
+      "seriesC": 50,
+      "seriesD": 42,
+      "answer": "A"
+    },
+    {
+      "q": 66,
+      "seriesA": 66,
+      "seriesB": 70,
+      "seriesC": 69,
+      "seriesD": 68,
+      "answer": "ACD"
+    },
+    {
+      "q": 67,
+      "seriesA": 67,
+      "seriesB": 66,
+      "seriesC": 70,
+      "seriesD": 69,
+      "answer": "BD"
+    },
+    {
+      "q": 68,
+      "seriesA": 68,
+      "seriesB": 67,
+      "seriesC": 66,
+      "seriesD": 70,
+      "answer": "ACD"
+    },
+    {
+      "q": 69,
+      "seriesA": 69,
+      "seriesB": 68,
+      "seriesC": 67,
+      "seriesD": 66,
+      "answer": "AC"
+    },
+    {
+      "q": 70,
+      "seriesA": 70,
+      "seriesB": 69,
+      "seriesC": 68,
+      "seriesD": 67,
+      "answer": "ACD"
+    },
+    {
+      "q": 71,
+      "seriesA": 71,
+      "seriesB": 82,
+      "seriesC": 80,
+      "seriesD": 76,
+      "answer": "A"
+    },
+    {
+      "q": 72,
+      "seriesA": 72,
+      "seriesB": 83,
+      "seriesC": 81,
+      "seriesD": 77,
+      "answer": "C"
+    },
+    {
+      "q": 73,
+      "seriesA": 73,
+      "seriesB": 84,
+      "seriesC": 82,
+      "seriesD": 78,
+      "answer": "B"
+    },
+    {
+      "q": 74,
+      "seriesA": 74,
+      "seriesB": 85,
+      "seriesC": 83,
+      "seriesD": 79,
+      "answer": "C"
+    },
+    {
+      "q": 75,
+      "seriesA": 75,
+      "seriesB": 71,
+      "seriesC": 84,
+      "seriesD": 80,
+      "answer": "D"
+    },
+    {
+      "q": 76,
+      "seriesA": 76,
+      "seriesB": 72,
+      "seriesC": 85,
+      "seriesD": 81,
+      "answer": "C"
+    },
+    {
+      "q": 77,
+      "seriesA": 77,
+      "seriesB": 73,
+      "seriesC": 71,
+      "seriesD": 82,
+      "answer": "D"
+    },
+    {
+      "q": 78,
+      "seriesA": 78,
+      "seriesB": 74,
+      "seriesC": 72,
+      "seriesD": 83,
+      "answer": "C"
+    },
+    {
+      "q": 79,
+      "seriesA": 79,
+      "seriesB": 75,
+      "seriesC": 73,
+      "seriesD": 84,
+      "answer": "A"
+    },
+    {
+      "q": 80,
+      "seriesA": 80,
+      "seriesB": 76,
+      "seriesC": 74,
+      "seriesD": 85,
+      "answer": "C"
+    },
+    {
+      "q": 81,
+      "seriesA": 81,
+      "seriesB": 77,
+      "seriesC": 75,
+      "seriesD": 71,
+      "answer": "C"
+    },
+    {
+      "q": 82,
+      "seriesA": 82,
+      "seriesB": 78,
+      "seriesC": 76,
+      "seriesD": 72,
+      "answer": "A"
+    },
+    {
+      "q": 83,
+      "seriesA": 83,
+      "seriesB": 79,
+      "seriesC": 77,
+      "seriesD": 73,
+      "answer": "C"
+    },
+    {
+      "q": 84,
+      "seriesA": 84,
+      "seriesB": 80,
+      "seriesC": 78,
+      "seriesD": 74,
+      "answer": "A"
+    },
+    {
+      "q": 85,
+      "seriesA": 85,
+      "seriesB": 81,
+      "seriesC": 79,
+      "seriesD": 75,
+      "answer": "D"
+    },
+    {
+      "q": 86,
+      "seriesA": 86,
+      "seriesB": 90,
+      "seriesC": 89,
+      "seriesD": 88,
+      "answer": "AC"
+    },
+    {
+      "q": 87,
+      "seriesA": 87,
+      "seriesB": 86,
+      "seriesC": 90,
+      "seriesD": 89,
+      "answer": "BC"
+    },
+    {
+      "q": 88,
+      "seriesA": 88,
+      "seriesB": 87,
+      "seriesC": 86,
+      "seriesD": 90,
+      "answer": "W"
+    },
+    {
+      "q": 89,
+      "seriesA": 89,
+      "seriesB": 88,
+      "seriesC": 87,
+      "seriesD": 86,
+      "answer": "CD"
+    },
+    {
+      "q": 90,
+      "seriesA": 90,
+      "seriesB": 89,
+      "seriesC": 88,
+      "seriesD": 87,
+      "answer": "ABC"
+    },
+    {
+      "q": 91,
+      "seriesA": 91,
+      "seriesB": 99,
+      "seriesC": 97,
+      "seriesD": 94,
+      "answer": "B"
+    },
+    {
+      "q": 92,
+      "seriesA": 92,
+      "seriesB": 100,
+      "seriesC": 98,
+      "seriesD": 95,
+      "answer": "B"
+    },
+    {
+      "q": 93,
+      "seriesA": 93,
+      "seriesB": 91,
+      "seriesC": 99,
+      "seriesD": 96,
+      "answer": "A"
+    },
+    {
+      "q": 94,
+      "seriesA": 94,
+      "seriesB": 92,
+      "seriesC": 100,
+      "seriesD": 97,
+      "answer": "W"
+    },
+    {
+      "q": 95,
+      "seriesA": 95,
+      "seriesB": 93,
+      "seriesC": 91,
+      "seriesD": 98,
+      "answer": "A"
+    },
+    {
+      "q": 96,
+      "seriesA": 96,
+      "seriesB": 94,
+      "seriesC": 92,
+      "seriesD": 99,
+      "answer": "A"
+    },
+    {
+      "q": 97,
+      "seriesA": 97,
+      "seriesB": 95,
+      "seriesC": 93,
+      "seriesD": 100,
+      "answer": "A"
+    },
+    {
+      "q": 98,
+      "seriesA": 98,
+      "seriesB": 96,
+      "seriesC": 94,
+      "seriesD": 91,
+      "answer": "C"
+    },
+    {
+      "q": 99,
+      "seriesA": 99,
+      "seriesB": 97,
+      "seriesC": 95,
+      "seriesD": 92,
+      "answer": "B"
+    },
+    {
+      "q": 100,
+      "seriesA": 100,
+      "seriesB": 98,
+      "seriesC": 96,
+      "seriesD": 93,
+      "answer": "B"
+    }
+  ]
+}
